@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO básico -->
+    <title>BugAI — Automatización con IA para tu negocio</title>
+    <meta name="description" content="BugAI diseña e implementa flujos de automatización con IA. Recupera entre 15 y 40 horas semanales y escala sin contratar más personal. España, LATAM y USA." />
+    <meta name="theme-color" content="#5B21B6" />
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content="BugAI — Automatización con IA" />
+    <meta property="og:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://bug-ai-1-0-0.vercel.app/" />
+    <!-- <meta property="og:image" content="/og-image.png" /> -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="BugAI — Automatización con IA" />
+    <meta name="twitter:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
+
+    <!--
+      Favicon inline SVG — hexágono violeta con acento cian.
+      Reemplaza por un .ico o .png real en producción.
+    -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><polygon points='18,2 32,10 32,26 18,34 4,26 4,10' fill='%235B21B6'/><circle cx='18' cy='18' r='3' fill='%2306B6D4'/></svg>"
+    />
+
+    <!--
+      Precarga de fuentes para evitar Flash of Unstyled Text (FOUT).
+      El import real está en src/index.css.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body class="antialiased">
+    <!--
+      El tema inicial 'dark' se aplica aquí en el atributo class de <html>
+      para evitar el parpadeo (flash) al cargar la página.
+      ThemeContext lo sincroniza en tiempo de ejecución.
+    -->
+    <div id="root"></div>
+
+    <!-- Vite inyecta el script del bundle aquí en build -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+/* Fuentes de Google */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Directivas Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base global ──────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body transition-colors duration-300;
+  }
+
+  /* Scrollbar estilizada */
+  ::-webkit-scrollbar        { width: 5px; }
+  ::-webkit-scrollbar-track  { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb  { background: #5B21B6; border-radius: 3px; }
+}
+
+/* ── Utilidades personalizadas ───────────────────────────────────────────── */
+@layer utilities {
+
+  /*
+   * Patrón de rejilla hexagonal animado para el Hero.
+   * Tailwind no puede expresar multi-background-image con una sola clase.
+   */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(91, 33, 182, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91, 33, 182, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Texto con gradiente violeta → cian */
+  .text-gradient {
+    background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Texto con gradiente para números de paso */
+  .text-gradient-num {
+    background: linear-gradient(135deg, #7C3AED, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Efecto glow para KAI SVG */
+  .kai-glow {
+    filter: drop-shadow(0 0 26px rgba(124, 58, 237, 0.45));
+  }
+
+  /* Glassmorphism (navbar al hacer scroll) — oscuro */
+  .glass-dark {
+    background: rgba(17, 17, 19, 0.92);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Glassmorphism — claro */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Overlay de hero en modo oscuro */
+  .hero-overlay-dark {
+    background: linear-gradient(to bottom, rgba(9, 9, 11, 0.5), rgba(9, 9, 11, 0.92));
+  }
+
+  /* Overlay de hero en modo claro */
+  .hero-overlay-light {
+    background: linear-gradient(to bottom, rgba(245, 243, 255, 0.35), rgba(245, 243, 255, 0.94));
+  }
+
+  /* Slot de imagen con overlay adaptativo */
+  .img-slot {
+    background-color: #EDE9FE;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .dark .img-slot {
+    background-color: #18181B;
+  }
+}
