@@ -25,7 +25,7 @@ export default function KaiChat() {
   const { messages, input, setInput, loading, sendMessage, handleKeyDown, endRef } = useChat()
 
   return (
-    <section id="kai" className="relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden">
+    <section id="kai" aria-label="Asistente KAI - Chat de IA" className="relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden">
 
       {/* Orbe decorativo de fondo */}
       <div

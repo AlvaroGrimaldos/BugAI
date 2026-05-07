@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://bug-ai-1-0-0.vercel.app/sitemap.xml

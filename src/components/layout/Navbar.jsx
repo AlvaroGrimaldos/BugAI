@@ -50,10 +50,10 @@ export default function Navbar() {
     : 'bg-transparent'
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
+    <nav aria-label="Navegación principal" className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
 
       {/* Logo + wordmark */}
-      <a href="#hero" className="flex items-center gap-2.5 no-underline">
+      <a href="#hero" className="flex items-center gap-2.5 no-underline" aria-label="BugAI - Ir al inicio">
         <LogoSVG size={30} />
         <span className="font-head font-bold text-xl text-zinc-950 dark:text-zinc-100">
           Bug<span className="text-brand-cyan">AI</span>
@@ -76,7 +76,12 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="bg-brand-violet hover:bg-brand-violet-mid text-white font-body font-semibold text-sm px-4 py-2 rounded-lg transition-colors duration-200 no-underline"
+          className="
+            bg-gradient-to-r from-brand-violet to-brand-cyan-dark
+            text-white font-body font-semibold text-sm px-4 py-2 rounded-lg
+            transition-all duration-200 no-underline
+            hover:shadow-lg hover:shadow-brand-violet/25
+          "
         >
           Diagnóstico gratis
         </a>

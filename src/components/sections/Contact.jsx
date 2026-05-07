@@ -3,20 +3,16 @@
  * ──────────────────────────────────────
  * Formulario de contacto vía Formspree con:
  * - Estado idle / sending / success / error.
- * - Info de contacto + imagen decorativa lateral (IMG_07).
+ * - Info de contacto + WhatsApp como canal principal.
  * - Layout de 2 columnas en desktop, 1 en mobile.
  *
- * 📸 IMG_07 — Foto decorativa lateral
- *    Tamaño: 600×200px | Formato: WebP
- *    Reemplaza 'YOUR_CONTACT_IMG_URL' con la ruta de tu imagen.
- *
  * ⚙️ FORMSPREE: cambia FORMSPREE_URL en src/constants/data.js
+ * ⚙️ WHATSAPP: cambia WHATSAPP_URL en src/constants/data.js
  */
 
 import { useState }                    from 'react'
-import { CONTACT_INFO, FORMSPREE_URL } from '../../constants/data'
+import { CONTACT_INFO, FORMSPREE_URL, WHATSAPP_URL } from '../../constants/data'
 
-// Ícono de check para el estado de éxito
 const CheckCircleIcon = () => (
   <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
     stroke="#22C55E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -25,7 +21,6 @@ const CheckCircleIcon = () => (
   </svg>
 )
 
-// Campo de formulario reutilizable
 function Field({ label, children }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -37,7 +32,6 @@ function Field({ label, children }) {
   )
 }
 
-// Estilo compartido para inputs y textarea
 const INPUT_CLS = `
   w-full bg-violet-50 dark:bg-dark-elevated
   border border-black/10 dark:border-brand-violet/20
@@ -50,7 +44,7 @@ const INPUT_CLS = `
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', business: '', message: '' })
-  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+  const [status, setStatus] = useState('idle')
 
   const handleChange = e =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -72,10 +66,10 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
+    <section id="contact" aria-label="Formulario de contacto" className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-14 items-start">
 
-        {/* ── Columna izquierda: info + imagen ── */}
+        {/* ── Columna izquierda: info + WhatsApp CTA ── */}
         <div>
           <span className="font-mono text-[11px] text-brand-cyan tracking-[2px] uppercase">
             Contacto
@@ -88,6 +82,27 @@ export default function Contact() {
             automatizar hoy. Sin compromiso.
           </p>
 
+          {/* WhatsApp CTA principal */}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              mt-8 flex items-center gap-3 no-underline
+              bg-emerald-600 hover:bg-emerald-700
+              text-white font-body font-semibold text-[15px]
+              px-6 py-3.5 rounded-xl
+              shadow-lg shadow-emerald-600/25
+              hover:shadow-xl hover:shadow-emerald-600/35
+              hover:-translate-y-0.5 transition-all duration-200
+            "
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Escribir por WhatsApp
+          </a>
+
           {/* Datos de contacto */}
           <div className="mt-8 flex flex-col gap-3">
             {CONTACT_INFO.map(item => (
@@ -95,43 +110,42 @@ export default function Contact() {
                 <span className="font-mono text-[9px] text-brand-violet-light tracking-widest w-20 flex-shrink-0">
                   {item.label}
                 </span>
-                <span className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300">
-                  {item.value}
-                </span>
+                {item.label === 'EMAIL' ? (
+                  <a href={`mailto:${item.value}`} className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-brand-cyan transition-colors no-underline">
+                    {item.value}
+                  </a>
+                ) : item.label === 'INSTAGRAM' || item.label === 'TIKTOK' ? (
+                  <a href={`https://www.${item.label === 'INSTAGRAM' ? 'instagram' : 'tiktok'}.com/${item.value.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-brand-cyan transition-colors no-underline">
+                    {item.value}
+                  </a>
+                ) : item.label === 'LINKEDIN' ? (
+                  <span className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300">
+                    {item.value}
+                  </span>
+                ) : (
+                  <span className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300">
+                    {item.value}
+                  </span>
+                )}
               </div>
             ))}
           </div>
 
-          {/*
-           * 📸 IMG_07 — Imagen decorativa lateral
-           * Reemplaza 'YOUR_CONTACT_IMG_URL' con la ruta real
-           */}
-          <div
-            className="img-slot mt-7 rounded-xl h-[180px] border border-black/5 dark:border-white/5 flex items-center justify-center relative overflow-hidden"
-            style={{ backgroundImage: "url('YOUR_CONTACT_IMG_URL')" }}
-          >
-            {/* Placeholder */}
-            <span className="font-mono text-xs text-zinc-400 relative z-10">
-              [📸 IMG_07 — Foto decorativa aquí]
-            </span>
-          </div>
-
-          {/* Badge de lanzamiento */}
-          <div className="mt-5 p-4 rounded-xl bg-brand-cyan/5 border border-brand-cyan/20">
+          {/* Badge de garantía */}
+          <div className="mt-8 p-4 rounded-xl bg-brand-cyan/5 border border-brand-cyan/20">
             <p className="font-mono text-[10px] text-brand-cyan tracking-widest mb-2">
-              ★ PRECIO DE LANZAMIENTO
+              ★ GARANTÍA INCLUIDA
             </p>
             <p className="font-body text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Quedan plazas disponibles. Sé parte de los primeros 10 clientes de BugAI
-              y accede al precio especial.
+              Todos los flujos están garantizados. Si algo falla por nuestra parte,
+              lo corregimos sin costo. Respondemos en máximo 24 horas hábiles.
             </p>
           </div>
         </div>
 
         {/* ── Columna derecha: formulario ── */}
-        <div className="bg-white dark:bg-dark-card border border-black/5 dark:border-brand-violet/15 rounded-2xl p-9">
+        <div className="bg-white dark:bg-dark-card border border-black/5 dark:border-brand-violet/15 rounded-2xl p-9 shadow-lg dark:shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
 
-          {/* Estado de éxito */}
           {status === 'success' ? (
             <div className="text-center py-10">
               <div className="flex justify-center mb-4">
@@ -154,7 +168,6 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-              {/* Nombre + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Field label="Nombre *">
                   <input
@@ -174,7 +187,6 @@ export default function Contact() {
                 </Field>
               </div>
 
-              {/* Empresa */}
               <Field label="Negocio / Empresa">
                 <input
                   name="business" type="text"
@@ -184,7 +196,6 @@ export default function Contact() {
                 />
               </Field>
 
-              {/* Mensaje */}
               <Field label="¿Qué proceso quieres automatizar? *">
                 <textarea
                   name="message" required rows={4}
@@ -194,14 +205,12 @@ export default function Contact() {
                 />
               </Field>
 
-              {/* Error */}
               {status === 'error' && (
                 <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/30 rounded-lg px-4 py-3 font-body text-[13px] text-red-600 dark:text-red-400">
-                  Error al enviar. Escríbenos directamente a <strong>hola@bugai.io</strong>
+                  Error al enviar. Escríbenos directamente a <strong>holabugai@gmail.com</strong>
                 </div>
               )}
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={status === 'sending'}
@@ -219,7 +228,7 @@ export default function Contact() {
               </button>
 
               <p className="font-mono text-[9px] text-zinc-400 text-center">
-                Respondemos en máximo 24 horas hábiles · hola@bugai.io
+                Respondemos en máximo 24 horas hábiles · holabugai@gmail.com
               </p>
             </form>
           )}

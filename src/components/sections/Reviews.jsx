@@ -1,128 +1,89 @@
 /**
  * src/components/sections/Reviews.jsx
  * ──────────────────────────────────────
- * Sección de testimonios con:
- * - Tarjeta principal con la reseña activa y comillas decorativas.
- * - Selector de reseña (tabs con avatar + nombre).
- * - Caja de rating global 5.0 / 5.0.
+ * Sección de prueba social — actualmente placeholder.
  *
- * 📸 IMG_04, IMG_05, IMG_06 — Fotos de avatar (200×200px, circular)
- *    Actualiza avatarUrl en src/constants/data.js cuando tengas las imágenes.
+ * ⚠️ BUGAI TIENE 0 CLIENTES ACTIVOS.
+ * No se deben inventar testimonios (Regla #4 de la bóveda).
+ * Esta sección se activará cuando haya testimonios reales documentados.
+ *
+ * Por ahora muestra un mensaje de compromiso de calidad.
  */
 
-import { useState }  from 'react'
-import Avatar        from '../ui/Avatar'
-import { REVIEWS }   from '../../constants/data'
-
-// Ícono estrella
-const StarIcon = ({ size = 17, filled = true }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24"
-    fill={filled ? '#F59E0B' : 'none'}
-    stroke="#F59E0B" strokeWidth="1.5">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-  </svg>
-)
-
 export default function Reviews() {
-  const [active, setActive] = useState(0)
-  const review = REVIEWS[active]
-
   return (
     <section
       id="reviews"
+      aria-label="Nuestro compromiso"
       className="py-24 px-6 bg-white dark:bg-dark-card border-t border-black/5 dark:border-white/5"
     >
       <div className="max-w-3xl mx-auto">
 
-        {/* Encabezado */}
         <div className="text-center mb-12">
           <span className="font-mono text-[11px] text-brand-violet-light tracking-[2px] uppercase">
-            Testimonios
+            Compromiso
           </span>
           <h2 className="font-head font-extrabold text-[clamp(26px,4vw,46px)] text-zinc-950 dark:text-zinc-100 mt-3 tracking-tight">
-            Lo que dicen nuestros clientes
+            Lo que garantizamos
           </h2>
-          <p className="font-mono text-[12px] text-zinc-400 mt-2">
-            ★ 5.0 / 5.0 · Programa de lanzamiento
-          </p>
         </div>
 
-        {/* Tarjeta de reseña activa */}
-        <div className="
-          relative bg-violet-50 dark:bg-dark-elevated
-          border border-brand-violet/15 dark:border-brand-violet/20
-          rounded-2xl p-9 mb-6 transition-all duration-300
-        ">
-          {/* Comillas decorativas */}
-          <span
-            className="absolute top-5 right-7 font-head text-[72px] leading-none select-none pointer-events-none"
-            style={{ color: 'rgba(124,58,237,0.12)' }}
-            aria-hidden="true"
-          >
-            "
-          </span>
-
-          {/* Estrellas */}
-          <div className="flex gap-1 mb-5">
-            {Array.from({ length: review.rating }).map((_, i) => (
-              <StarIcon key={i} />
-            ))}
-          </div>
-
-          {/* Texto de la reseña */}
-          <p className="font-body text-[17px] text-zinc-800 dark:text-zinc-200 leading-[1.8] mb-6 font-light">
-            "{review.text}"
-          </p>
-
-          {/* Autor */}
-          <div className="flex items-center gap-3">
-            <Avatar url={review.avatarUrl} initials={review.initials} size={44} />
-            <div>
-              <p className="font-head font-semibold text-[15px] text-zinc-950 dark:text-zinc-100">
-                {review.name}
-              </p>
-              <p className="font-mono text-[10px] text-zinc-400">
-                {review.business}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              ),
+              title: 'Garantía de funcionamiento',
+              desc: 'Cada flujo se prueba antes de la entrega. Si algo falla por nuestra parte, lo corregimos sin costo.',
+            },
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              ),
+              title: 'Respuesta en 24h',
+              desc: 'Respondemos todas las consultas en máximo 24 horas hábiles. Tu tiempo es valioso.',
+            },
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              ),
+              title: 'Entrega en plazo',
+              desc: 'Cumplimos los plazos acordados en días hábiles. Retrasos del cliente no se imputan a BugAI.',
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="
+                bg-violet-50 dark:bg-dark-elevated
+                border border-black/5 dark:border-white/5
+                rounded-2xl p-7 text-center
+                hover:border-brand-violet/30 transition-colors duration-200
+              "
+            >
+              <div className="flex justify-center mb-4">{item.icon}</div>
+              <h3 className="font-head font-bold text-lg text-zinc-950 dark:text-zinc-100 mb-3">
+                {item.title}
+              </h3>
+              <p className="font-body text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                {item.desc}
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Selector de reseñas (tabs) */}
-        <div className="flex flex-wrap gap-2.5 justify-center mb-10">
-          {REVIEWS.map((r, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`
-                flex items-center gap-2 px-3.5 py-2 rounded-xl border cursor-pointer transition-all duration-200
-                ${i === active
-                  ? 'bg-brand-violet border-brand-violet text-white'
-                  : 'bg-violet-50 dark:bg-dark-elevated border-black/5 dark:border-white/5 text-zinc-500 dark:text-zinc-400 hover:border-brand-violet/30'
-                }
-              `}
-            >
-              <Avatar url={r.avatarUrl} initials={r.initials} size={26} />
-              <span className="font-body text-[12px]">{r.name}</span>
-            </button>
           ))}
         </div>
 
-        {/* Rating global */}
-        <div className="
-          text-center py-5 px-6 rounded-xl
-          bg-brand-violet/5 border border-brand-violet/15
-        ">
-          <div className="flex justify-center gap-1 mb-2">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon key={i} size={20} />
-            ))}
-          </div>
-          <p className="font-head font-bold text-[26px] text-zinc-950 dark:text-zinc-100 leading-none mb-1.5">
-            5.0 / 5.0
-          </p>
+        {/* Sección reservada para testimonios reales futuros */}
+        <div className="mt-12 text-center">
           <p className="font-mono text-[10px] text-zinc-400 tracking-widest">
-            CALIFICACIÓN PROMEDIO · PROGRAMA DE LANZAMIENTO
+            TESTIMONIOS REALES PRÓXIMAMENTE · SE ACTIVARÁN CON CLIENTES VERIFICADOS
           </p>
         </div>
       </div>

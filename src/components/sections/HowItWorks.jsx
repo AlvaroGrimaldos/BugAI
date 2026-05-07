@@ -1,13 +1,9 @@
 /**
  * src/components/sections/HowItWorks.jsx
  * ─────────────────────────────────────────
- * Sección "Cómo trabajamos": banner de imagen + 3 pasos numerados.
+ * Sección "Cómo trabajamos": 3 pasos numerados.
  *
- * 📸 IMG_03 — Banner de proceso
- *    Tamaño: 1100×260px | Formato: WebP
- *    Reemplaza 'YOUR_PROCESS_IMG_URL' con la ruta de tu imagen.
- *    Prompt Gemini: "Two professionals on a video call, modern home office,
- *    dual monitors with automation dashboards, warm light, cinematic 16:9"
+ * Banner de imagen (IMG_03) — reemplaza 'YOUR_PROCESS_IMG_URL'
  */
 
 import { STEPS } from '../../constants/data'
@@ -16,41 +12,21 @@ export default function HowItWorks() {
   return (
     <section
       id="process"
+      aria-label="Cómo trabajamos"
       className="py-24 px-6 bg-white dark:bg-dark-card border-t border-black/5 dark:border-white/5"
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* Encabezado */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <span className="font-mono text-[11px] text-brand-violet-light tracking-[2px] uppercase">
             Proceso
           </span>
           <h2 className="font-head font-extrabold text-[clamp(26px,4vw,46px)] text-zinc-950 dark:text-zinc-100 mt-3 tracking-tight">
             Cómo trabajamos
           </h2>
-        </div>
-
-        {/*
-         * 📸 IMG_03 — Banner de imagen de proceso
-         * Reemplaza 'YOUR_PROCESS_IMG_URL' con la ruta real
-         */}
-        <div
-          className="img-slot relative rounded-2xl overflow-hidden mb-8 h-[220px] border border-black/5 dark:border-white/5 flex items-end"
-          style={{ backgroundImage: "url('YOUR_PROCESS_IMG_URL')" }}
-        >
-          {/* Overlay degradado + texto mientras no haya imagen */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent z-10" />
-          <div className="relative z-20 w-full p-5">
-            <span className="font-mono text-[11px] text-white/60 tracking-widest">
-              OPERACIÓN 100% REMOTA · ESPAÑA · LATAM · USA
-            </span>
-          </div>
-          {/* Placeholder visible cuando no hay imagen */}
-          <div className="absolute inset-0 flex items-center justify-center z-5">
-            <span className="font-mono text-xs text-zinc-400">
-              [📸 IMG_03 — Banner de proceso aquí]
-            </span>
-          </div>
+          <p className="font-body text-[15px] text-zinc-500 dark:text-zinc-400 mt-3 max-w-md mx-auto">
+            3 pasos simples desde el diagnóstico hasta la entrega funcionando.
+          </p>
         </div>
 
         {/* Grid de pasos */}
@@ -59,12 +35,25 @@ export default function HowItWorks() {
             <div
               key={i}
               className="
+                relative group
                 bg-violet-50 dark:bg-dark-elevated
                 border border-black/5 dark:border-white/5
                 rounded-2xl p-7
+                hover:border-brand-violet/30 dark:hover:border-brand-violet/30
+                hover:shadow-lg dark:hover:shadow-[0_12px_40px_rgba(91,33,182,0.15)]
+                transition-all duration-300
               "
             >
-              {/* Número del paso con gradiente */}
+              {/* Conector visual entre pasos (solo desktop) */}
+              {i < STEPS.length - 1 && (
+                <div className="hidden md:block absolute top-12 -right-3 w-6 text-zinc-300 dark:text-zinc-600" aria-hidden="true">
+                  <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <line x1="0" y1="6" x2="18" y2="6" />
+                    <polyline points="14,1 19,6 14,11" />
+                  </svg>
+                </div>
+              )}
+
               <p className="text-gradient-num font-mono font-medium text-[38px] leading-none mb-5">
                 {step.num}
               </p>

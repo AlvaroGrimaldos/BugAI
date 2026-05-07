@@ -16,15 +16,15 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
 
         {/* Logo + wordmark */}
-        <div className="flex items-center gap-2.5">
+        <a href="#hero" className="flex items-center gap-2.5 no-underline" aria-label="BugAI - Ir al inicio">
           <LogoSVG size={26} />
           <span className="font-head font-bold text-lg text-zinc-950 dark:text-zinc-100">
             Bug<span className="text-brand-cyan">AI</span>
           </span>
-        </div>
+        </a>
 
         {/* Links */}
-        <nav className="flex gap-6">
+        <nav aria-label="Enlaces del pie">
           {FOOTER_LINKS.map(label => (
             <a
               key={label}

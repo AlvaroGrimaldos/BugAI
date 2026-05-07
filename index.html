@@ -1,42 +1,172 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- SEO básico -->
-    <title>BugAI — Automatización con IA para tu negocio</title>
-    <meta name="description" content="BugAI diseña e implementa flujos de automatización con IA. Recupera entre 15 y 40 horas semanales y escala sin contratar más personal. España, LATAM y USA." />
+    <title>BugAI — Automatización con IA para Retail y E-commerce</title>
+    <meta name="description" content="BugAI diseña e implementa flujos de automatización con IA para retail y e-commerce. Recupera entre 15 y 40 horas semanales, escala sin contratar personal y conecta tus herramientas (CRM, tienda online, WhatsApp, APIs). Diagnóstico gratuito. España, LATAM y USA." />
+    <meta name="keywords" content="automatización con IA, automatización e-commerce, automatización retail, flujos de automatización, IA para negocios, n8n, Manychat, automatización WhatsApp, chatbot IA, retail automation, e-commerce automation" />
+    <meta name="author" content="BugAI" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://bug-ai-1-0-0.vercel.app/" />
     <meta name="theme-color" content="#5B21B6" />
 
+    <!-- Idiomas alternativos -->
+    <link rel="alternate" hreflang="es" href="https://bug-ai-1-0-0.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://bug-ai-1-0-0.vercel.app/" />
+
     <!-- Open Graph -->
-    <meta property="og:title"       content="BugAI — Automatización con IA" />
-    <meta property="og:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
+    <meta property="og:site_name" content="BugAI" />
+    <meta property="og:title"       content="BugAI — Automatización con IA para Retail y E-commerce" />
+    <meta property="og:description" content="Diseñamos e implementamos flujos de automatización con IA. Recupera entre 15 y 40 horas semanales y escala sin contratar más personal." />
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content="https://bug-ai-1-0-0.vercel.app/" />
-    <!-- <meta property="og:image" content="/og-image.png" /> -->
+    <meta property="og:locale"      content="es_ES" />
+    <meta property="og:image"       content="https://bug-ai-1-0-0.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"   content="BugAI — Automatización inteligente para retail y e-commerce" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="BugAI — Automatización con IA" />
-    <meta name="twitter:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
+    <meta name="twitter:site"        content="@bugai_io" />
+    <meta name="twitter:creator"     content="@bugai_io" />
+    <meta name="twitter:title"       content="BugAI — Automatización con IA para Retail y E-commerce" />
+    <meta name="twitter:description" content="Diseñamos e implementamos flujos de automatización con IA. Recupera entre 15 y 40 horas semanales." />
+    <meta name="twitter:image"       content="https://bug-ai-1-0-0.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt"   content="BugAI — Automatización inteligente para retail y e-commerce" />
 
-    <!--
-      Favicon inline SVG — hexágono violeta con acento cian.
-      Reemplaza por un .ico o .png real en producción.
-    -->
+    <!-- Favicon inline SVG -->
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><polygon points='18,2 32,10 32,26 18,34 4,26 4,10' fill='%235B21B6'/><circle cx='18' cy='18' r='3' fill='%2306B6D4'/></svg>"
     />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
-    <!--
-      Precarga de fuentes para evitar Flash of Unstyled Text (FOUT).
-      El import real está en src/index.css.
-    -->
+    <!-- Preload de fuentes para evitar FOUT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://api.anthropic.com" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BugAI",
+      "url": "https://bug-ai-1-0-0.vercel.app/",
+      "description": "Agencia de automatización con IA especializada en retail y e-commerce",
+      "email": "holabugai@gmail.com",
+      "founders": [
+        { "@type": "Person", "name": "Álvaro Grimaldos" },
+        { "@type": "Person", "name": "Laia Carrillo" }
+      ],
+      "knowsAbout": ["Automatización con IA", "Retail", "E-commerce", "n8n", "Claude API", "Manychat", "Chatbots IA"],
+      "areaServed": ["España", "América Latina", "Estados Unidos"],
+      "sameAs": [
+        "https://www.instagram.com/bugai.io",
+        "https://www.tiktok.com/@bugai.io"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter",
+          "description": "1 automatización a medida con diagnóstico incluido",
+          "price": "149",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Growth",
+          "description": "Hasta 3 flujos conectados con integración multi-plataforma",
+          "price": "549",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "description": "Sistema completo de hasta 10 flujos interconectados con IA personalizada",
+          "price": "1499",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Retainer",
+          "description": "Monitoreo activo + 3 ajustes mensuales + soporte WhatsApp",
+          "price": "199",
+          "priceCurrency": "EUR"
+        }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BugAI",
+      "url": "https://bug-ai-1-0-0.vercel.app/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://bug-ai-1-0-0.vercel.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es la automatización con IA para e-commerce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es la creación de flujos digitales inteligentes que conectan tus herramientas (CRM, tienda online, WhatsApp, APIs) para eliminar tareas repetitivas como gestión de pedidos, atención al cliente o recuperación de carritos abandonados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo puedo ahorrar con automatización?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nuestros clientes recuperan entre 15 y 40 horas semanales según la complejidad de sus procesos actuales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una automatización con BugAI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Desde €149 para una automatización simple (plan Starter), €549 para hasta 3 flujos (plan Growth), y €1.499 para un sistema completo de hasta 10 flujos (plan Pro). También ofrecemos mantenimiento mensual desde €199/mes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué mercados opera BugAI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Operamos de forma remota en España, América Latina (LATAM) y Estados Unidos (USA). Ofrecemos servicio bilingüe en español e inglés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye el diagnóstico gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una sesión de 30 minutos por WhatsApp o videollamada donde identificamos qué procesos de tu negocio te quitan más tiempo y cuáles se pueden automatizar de inmediato, sin costo ni compromiso."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body class="antialiased">

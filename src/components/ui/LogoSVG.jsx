@@ -1,8 +1,11 @@
 /**
  * src/components/ui/LogoSVG.jsx
  * ────────────────────────────────
- * Logo SVG de BugAI: hexágono violeta con red neuronal interna y acento cian.
+ * Logo oficial de BugAI: "B" estilizada en gradiente violeta/púrpura
+ * con burbuja de chat integrada y estrella de 4 puntas en cian.
  * Prop: size (número) — tamaño en píxeles (ancho = alto).
+ *
+ * El logo anterior (hexágono con red neuronal) está OBSOLETO.
  */
 
 export default function LogoSVG({ size = 36 }) {
@@ -10,44 +13,45 @@ export default function LogoSVG({ size = 36 }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 36 36"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="BugAI logo"
     >
       <defs>
-        <linearGradient id="logo-grad" x1="4" y1="2" x2="32" y2="34" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#5B21B6" />
+        <linearGradient id="logo-b-grad" x1="4" y1="4" x2="28" y2="36" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#7C3AED" />
+          <stop offset="50%" stopColor="#5B21B6" />
           <stop offset="100%" stopColor="#3B0F8C" />
+        </linearGradient>
+        <linearGradient id="logo-bubble-grad" x1="22" y1="22" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#06B6D4" />
+          <stop offset="100%" stopColor="#0891B2" />
         </linearGradient>
       </defs>
 
-      {/* Hexágono base */}
-      <polygon
-        points="18,2 32,10 32,26 18,34 4,26 4,10"
-        fill="url(#logo-grad)"
-        stroke="rgba(6,182,212,0.6)"
-        strokeWidth="1"
+      {/* Burbuja de chat integrada */}
+      <path
+        d="M22 22 C22 20.9 22.9 20 24 20 L32 20 C33.1 20 34 20.9 34 22 L34 28 C34 29.1 33.1 30 32 30 L26 30 L22 34 L22 30 L22 22Z"
+        fill="url(#logo-bubble-grad)"
+        opacity="0.9"
       />
 
-      {/* Nodo central */}
-      <circle cx="18" cy="18" r="2.5" fill="#06B6D4" />
+      {/* Letra "B" estilizada */}
+      <path
+        d="M8 6 L20 6 C24.4 6 28 9.6 28 14 C28 17.2 26.1 19.9 23.5 21.2 C26.8 22.5 29 25.6 29 29.2 C29 33.6 25.4 37 21 37 L8 37 Z"
+        fill="url(#logo-b-grad)"
+      />
 
-      {/* Nodos periféricos */}
-      <circle cx="11" cy="13" r="1.5" fill="#A78BFA" />
-      <circle cx="25" cy="13" r="1.5" fill="#A78BFA" />
-      <circle cx="11" cy="23" r="1.5" fill="#A78BFA" />
-      <circle cx="25" cy="23" r="1.5" fill="#A78BFA" />
+      {/* Espacios internos de la B (cortes) */}
+      <rect x="12" y="10" width="10" height="4" rx="1" fill="#09090B" />
+      <rect x="12" y="17" width="11" height="4" rx="1" fill="#09090B" />
 
-      {/* Conexiones radiales (centro → nodos) */}
-      <line x1="18" y1="18" x2="11" y2="13" stroke="rgba(6,182,212,0.5)" strokeWidth="0.8" />
-      <line x1="18" y1="18" x2="25" y2="13" stroke="rgba(6,182,212,0.5)" strokeWidth="0.8" />
-      <line x1="18" y1="18" x2="11" y2="23" stroke="rgba(6,182,212,0.5)" strokeWidth="0.8" />
-      <line x1="18" y1="18" x2="25" y2="23" stroke="rgba(6,182,212,0.5)" strokeWidth="0.8" />
-
-      {/* Conexiones laterales */}
-      <line x1="11" y1="13" x2="25" y2="13" stroke="rgba(167,139,250,0.3)" strokeWidth="0.5" />
-      <line x1="11" y1="23" x2="25" y2="23" stroke="rgba(167,139,250,0.3)" strokeWidth="0.5" />
+      {/* Estrella de 4 puntas en cian */}
+      <path
+        d="M30 14 L30.8 18.2 L35 19 L30.8 19.8 L30 24 L29.2 19.8 L25 19 L29.2 18.2 Z"
+        fill="#06B6D4"
+      />
     </svg>
   )
 }
