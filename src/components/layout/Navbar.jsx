@@ -53,10 +53,10 @@ export default function Navbar() {
     <nav aria-label="Navegación principal" className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
 
       {/* Logo + wordmark */}
-      <a href="#hero" className="flex items-center gap-2.5 no-underline" aria-label="BugAI - Ir al inicio">
-        <LogoSVG size={30} />
+      <a href="#hero" className="flex items-center gap-2.5 gap-r-0 no-underline" aria-label="BugAI - Ir al inicio">
+        <LogoSVG size={40} />
         <span className="font-head font-bold text-xl text-zinc-950 dark:text-zinc-100">
-          Bug<span className="text-brand-cyan">AI</span>
+          Bug<span className="text-brand-cyan"> AI</span>
         </span>
       </a>
 
