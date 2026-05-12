@@ -137,7 +137,7 @@ export const CONTACT_INFO = [
 ]
 
 // ── WhatsApp (canal principal de ventas) ───────────────────────────────────
-export const WHATSAPP_URL = 'https://wa.me/TU_NUMERO_AQUI'
+export const WHATSAPP_URL = 'https://wa.me/+573105708389'
 
 // ── Stack tecnológico (Hero) ───────────────────────────────────────────────
 // Según bóveda Obsidian: n8n es la plataforma principal
@@ -170,4 +170,4 @@ REGLAS:
 
 // ── Formspree endpoint ────────────────────────────────────────────────────
 // ⚙️ Reemplaza con tu ID real: https://formspree.io
-export const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID'
+export const FORMSPREE_URL = 'https://formspree.io/f/xnjwwjag'
