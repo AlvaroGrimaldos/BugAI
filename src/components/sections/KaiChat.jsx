@@ -11,11 +11,17 @@ const KAI_TAGS = ['IA conversacional', 'Automatización', 'Diagnóstico']
 
 export default function KaiChat() {
   return (
+<<<<<<< HEAD
     <section
       id="kai"
       className="relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden"
     >
       {/* Fondo decorativo */}
+=======
+    <section id="kai" aria-label="Asistente KAI - Chat de IA" className="relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden">
+
+      {/* Orbe decorativo de fondo */}
+>>>>>>> 719c75e8a2e1456a2cd7fc9faf77f8a1b5ba3f2a
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{

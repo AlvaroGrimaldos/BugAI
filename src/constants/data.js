@@ -3,6 +3,8 @@
  * ──────────────────────
  * Datos estáticos de la landing page centralizados en un solo lugar.
  * Modifica aquí para actualizar contenido sin tocar los componentes.
+ *
+ * Fuente de verdad: OBSIDIAN/BugAI/ (bóveda) + CONTEXT/BugAI_Contexto_Maestro.md
  */
 
 // ── Navegación ─────────────────────────────────────────────────────────────
@@ -10,29 +12,30 @@ export const NAV_LINKS = [
   { label: 'Servicios', href: '#services' },
   { label: 'Proceso',   href: '#process'  },
   { label: 'KAI Chat',  href: '#kai'      },
-  { label: 'Opiniones', href: '#reviews'  },
   { label: 'Contacto',  href: '#contact'  },
 ]
 
 // ── Estadísticas del Hero ──────────────────────────────────────────────────
+// Verificadas contra la propuesta de valor oficial: "15 a 40 horas semanales"
 export const STATS = [
-  { value: '40h',  label: 'semanales recuperadas',     accent: '#06B6D4' },
-  { value: '3×',   label: 'más rápido que manual',     accent: '#7C3AED' },
-  { value: '0',    label: 'empleados extra necesarios', accent: '#06B6D4' },
-  { value: '100%', label: 'operación remota',           accent: '#7C3AED' },
+  { value: '15–40h', label: 'semanales recuperadas',      accent: '#06B6D4' },
+  { value: '100%',   label: 'operación remota',            accent: '#7C3AED' },
+  { value: '24h',    label: 'tiempo de respuesta',         accent: '#06B6D4' },
+  { value: '3',      label: 'mercados: ES · LATAM · USA',  accent: '#7C3AED' },
 ]
 
 // ── Planes de precios ──────────────────────────────────────────────────────
+// Precios OFICIALES según bóveda Obsidian (Servicios y Precios.md)
+// NO son precios de descuento — son los precios reales.
 export const PLANS = [
   {
     name:     'Starter',
-    price:    '79',
-    normal:   '149',
+    price:    '149',
     delivery: '3–5 días hábiles',
     monthly:  false,
     popular:  false,
     accent:   '#7C3AED',
-    desc:     'Perfecta para dar el primer paso con la automatización.',
+    desc:     'Perfecto para dar el primer paso con la automatización.',
     features: [
       '1 automatización a medida',
       'Diagnóstico previo incluido',
@@ -42,8 +45,7 @@ export const PLANS = [
   },
   {
     name:     'Growth',
-    price:    '249',
-    normal:   '549',
+    price:    '549',
     delivery: '7–10 días hábiles',
     monthly:  false,
     popular:  true,
@@ -59,8 +61,7 @@ export const PLANS = [
   },
   {
     name:     'Pro',
-    price:    '699',
-    normal:   '1499',
+    price:    '1.499',
     delivery: '2–4 semanas',
     monthly:  false,
     popular:  false,
@@ -76,8 +77,7 @@ export const PLANS = [
   },
   {
     name:     'Retainer',
-    price:    '89',
-    normal:   '199',
+    price:    '199',
     delivery: 'Mensual',
     monthly:  true,
     popular:  false,
@@ -111,67 +111,63 @@ export const STEPS = [
   },
 ]
 
-// ── Reseñas / Testimonios ──────────────────────────────────────────────────
-// ⚠️ Reemplaza con testimonios reales de los primeros 10 clientes (cláusula contractual).
-// 📸 avatarUrl: ruta a la foto de 200×200px (ver prompts Gemini en LandingPage_v2.jsx)
-export const REVIEWS = [
-  {
-    name:      'María G.',
-    business:  'E-commerce · España',
-    initials:  'MG',
-    rating:    5,
-    avatarUrl: 'YOUR_AVATAR_1_URL', // 📸 IMG_04
-    text:      'Recuperamos más de 20 horas semanales en gestión de pedidos. El proceso fue rápido y el soporte excelente. Completamente recomendado para cualquier negocio online.',
-  },
-  {
-    name:      'Carlos R.',
-    business:  'Agencia de marketing · Colombia',
-    initials:  'CR',
-    rating:    5,
-    avatarUrl: 'YOUR_AVATAR_2_URL', // 📸 IMG_05
-    text:      'Automatizamos los reportes de clientes y la generación de contenido. Ahora atendemos el doble de cuentas sin contratar más personal. BugAI cumple lo que promete.',
-  },
-  {
-    name:      'Ana V.',
-    business:  'Consultoría · México',
-    initials:  'AV',
-    rating:    5,
-    avatarUrl: 'YOUR_AVATAR_3_URL', // 📸 IMG_06
-    text:      'El diagnóstico gratuito fue revelador. En 30 minutos identificaron 3 procesos que me costaban horas al día. El retorno de inversión fue inmediato.',
-  },
+// ── Qué hacemos / Qué NO hacemos ───────────────────────────────────────────
+export const WE_DO = [
+  'Flujos de automatización con o sin IA para retail y e-commerce',
+  'Conexión entre herramientas: CRMs, tiendas online, APIs, mensajería, ERPs',
+  'Gestión de pedidos automatizada, atención al cliente, recuperación de carritos, reportes, inventario',
+]
+
+export const WE_DONT = [
+  'Apps móviles nativas',
+  'Diseño web desde cero',
+  'Hosting o infraestructura de servidores',
+  'Consultoría empresarial general',
+  'Automatizaciones para sectores fuera del retail y e-commerce',
 ]
 
 // ── Datos de contacto ──────────────────────────────────────────────────────
+// Según bóveda Obsidian: 00 - Dashboard/Home.md
 export const CONTACT_INFO = [
-  { label: 'EMAIL',     value: 'hola@bugai.io'  },
-  { label: 'WEB',       value: 'www.bugai.io'   },
-  { label: 'INSTAGRAM', value: '@bugai.io'       },
-  { label: 'TIKTOK',    value: '@bugai.auto'     },
+  { label: 'EMAIL',      value: 'holabugai@gmail.com' },
+  { label: 'WEB',        value: 'bug-ai-1-0-0.vercel.app' },
+  { label: 'INSTAGRAM',  value: '@bugai.io' },
+  { label: 'TIKTOK',     value: '@bugai.io' },
+  { label: 'LINKEDIN',   value: 'BugAI' },
 ]
 
+// ── WhatsApp (canal principal de ventas) ───────────────────────────────────
+export const WHATSAPP_URL = 'https://wa.me/+573105708389'
+
 // ── Stack tecnológico (Hero) ───────────────────────────────────────────────
-export const TECH_STACK = ['Make.com', 'OpenAI', 'Claude API', 'n8n', 'Airtable']
+// Según bóveda Obsidian: n8n es la plataforma principal
+export const TECH_STACK = ['n8n', 'OpenAI API', 'Claude API', 'Manychat', 'Airtable']
 
 // ── System prompt de KAI (chatbot) ────────────────────────────────────────
+// Info corregida según bóveda Obsidian
 export const KAI_SYSTEM_PROMPT = `Eres KAI, asistente oficial de BugAI. Profesional, directo y competente. Sin bromas ni emojis excesivos.
 
-BugAI diseña e implementa flujos de automatización con IA. Los clientes recuperan entre 15 y 40 horas semanales.
+BugAI diseña, desarrolla e implementa flujos de automatización con IA para negocios de retail y e-commerce. Los clientes recuperan entre 15 y 40 horas semanales.
 
-PLANES DE LANZAMIENTO (primeros 10 clientes):
-- Starter: €79 (normal €149) — 1 automatización, 3-5 días hábiles
-- Growth: €249 (normal €549) — hasta 3 flujos, 7-10 días hábiles
-- Pro: €699 (normal €1.499) — hasta 10 flujos, 2-4 semanas
-- Retainer: €89/mes (normal €199/mes) — monitoreo + 3 ajustes + soporte WhatsApp
+PLANES:
+- Starter: €149 — 1 automatización a medida, 3-5 días hábiles
+- Growth: €549 — hasta 3 flujos conectados, 7-10 días hábiles
+- Pro: €1.499 — hasta 10 flujos interconectados con IA personalizada, 2-4 semanas
+- Retainer: €199/mes — monitoreo activo + 3 ajustes + soporte WhatsApp
 
-Stack tecnológico: Make.com, n8n, OpenAI API, Claude API, Manychat, Airtable.
-Email: hola@bugai.io | Web: www.bugai.io | Instagram: @bugai.io | TikTok: @bugai.auto
+Stack tecnológico: n8n, OpenAI API, Claude API, Manychat, Airtable.
+Email: holabugai@gmail.com | Web: bug-ai-1-0-0.vercel.app | Instagram: @bugai.io | TikTok: @bugai.io | LinkedIn: BugAI
 
 REGLAS:
 1. Escribe siempre "BugAI" con B y AI mayúsculas
 2. Precios siempre en EUR primero
 3. Nunca inventes testimonios ni datos
-4. Invita siempre al diagnóstico gratuito de 30 min como siguiente paso`
+4. Invita siempre al diagnóstico gratuito de 30 min como siguiente paso
+5. BugAI atiende exclusivamente retail y e-commerce — redirige otros sectores
+6. Los plazos siempre en días hábiles
+7. No uses lenguaje de "lanzamiento" ni "precios especiales de lanzamiento"
+8. No hagas chistes ni uses emojis excesivos`
 
 // ── Formspree endpoint ────────────────────────────────────────────────────
 // ⚙️ Reemplaza con tu ID real: https://formspree.io
-export const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID'
+export const FORMSPREE_URL = 'https://formspree.io/f/xnjwwjag'

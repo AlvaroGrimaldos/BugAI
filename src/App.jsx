@@ -5,6 +5,7 @@
  * Ensambla todas las secciones en el orden correcto y las envuelve en el ThemeProvider.
  */
 
+import { useEffect } from 'react'
 import { ThemeProvider } from '../src/context/ThemeContext'
 
 // Layout
@@ -20,14 +21,44 @@ import KaiChat     from '../src/components/sections/KaiChat'
 import Reviews     from '../src/components/sections/Reviews'
 import Contact     from '../src/components/sections/Contact'
 
+const SECTION_META = [
+  { id: 'hero',      title: 'BugAI — Automatización con IA para Retail y E-commerce', desc: 'Recupera entre 15 y 40 horas semanales con flujos de automatización inteligentes.' },
+  { id: 'services',  title: 'Servicios y Precios — BugAI', desc: 'Planes desde €149. Automatización a medida para retail y e-commerce.' },
+  { id: 'process',   title: 'Cómo Trabajamos — BugAI', desc: 'Diagnóstico gratuito, diseño y entrega en días hábiles.' },
+  { id: 'kai',       title: 'KAI — Asistente IA de BugAI', desc: 'Habla con nuestro asistente inteligente sobre automatización.' },
+  { id: 'reviews',   title: 'Nuestro Compromiso — BugAI', desc: 'Garantía de funcionamiento, respuesta en 24h y entrega en plazo.' },
+  { id: 'contact',   title: 'Contacto — BugAI', desc: 'Solicita tu diagnóstico gratuito de 30 minutos.' },
+]
+
+function useDynamicMeta() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find(e => e.isIntersecting && e.intersectionRatio >= 0.3)
+        if (!visible) return
+        const meta = SECTION_META.find(s => s.id === visible.target.id)
+        if (meta) {
+          document.title = meta.title
+          document.querySelector('meta[name="description"]')?.setAttribute('content', meta.desc)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    SECTION_META.forEach(s => {
+      const el = document.getElementById(s.id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+}
+
 export default function App() {
+  useDynamicMeta()
+
   return (
     <ThemeProvider>
-      {/*
-       * El fondo del body cambia con el tema:
-       * - light: bg-violet-50  (Tailwind)
-       * - dark:  bg-dark-bg    (custom color en tailwind.config.js)
-       */}
       <div className="min-h-screen bg-violet-50 dark:bg-dark-bg text-zinc-950 dark:text-zinc-100 transition-colors duration-300">
         <Navbar />
 

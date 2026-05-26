@@ -11,7 +11,7 @@
  *   5. Contenido (badge, headline, subtítulo, CTAs, tech stack)
  *
  * 📸 IMG_01 — Hero Background
- *    Tamaño: 1920×900px | Formato: WebP | Prompt Gemini en data.js
+ *    Tamaño: 1920×900px | Formato: WebP
  *    Reemplaza 'YOUR_HERO_BG_URL' con la ruta de tu imagen.
  */
 
@@ -27,7 +27,6 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 px-6"
     >
       {/* ── Capa 1: Imagen de fondo ── */}
-      {/* 📸 IMG_01 — reemplaza 'YOUR_HERO_BG_URL' */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{ backgroundImage: "url('YOUR_HERO_BG_URL')" }}
@@ -61,11 +60,11 @@ export default function Hero() {
       {/* ── Capa 5: Contenido ── */}
       <div className="relative z-[3] max-w-4xl mx-auto text-center animate-fade-up">
 
-        {/* Badge de lanzamiento */}
+        {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-brand-violet/20 border border-brand-violet-mid/40 rounded-full px-4 py-1.5 mb-8">
           <span className="w-[7px] h-[7px] rounded-full bg-brand-cyan animate-glow-pulse" />
           <span className="font-mono text-[11px] text-brand-cyan tracking-wider">
-            PRECIO DE LANZAMIENTO · PRIMEROS 10 CLIENTES
+            AUTOMATIZACIÓN CON IA · RETAIL Y E-COMMERCE
           </span>
         </div>
 
@@ -79,7 +78,7 @@ export default function Hero() {
         <p className="font-body text-[clamp(15px,2.5vw,19px)] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
           Diseñamos e implementamos flujos de automatización con IA para que recuperes entre{' '}
           <strong className="text-zinc-950 dark:text-zinc-100 font-semibold">15 y 40 horas semanales</strong>{' '}
-          y escales sin contratar más personal.
+          y escales sin contratar más personal. España, LATAM y USA.
         </p>
 
         {/* CTAs */}

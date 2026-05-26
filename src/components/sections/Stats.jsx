@@ -8,7 +8,7 @@ import { STATS } from '../../constants/data'
 
 export default function Stats() {
   return (
-    <section className="bg-white dark:bg-dark-card border-y border-black/5 dark:border-white/5 py-16 px-6">
+    <section aria-label="Estadísticas de impacto" className="bg-white dark:bg-dark-card border-y border-black/5 dark:border-white/5 py-16 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
         {STATS.map((stat, i) => (
           <div

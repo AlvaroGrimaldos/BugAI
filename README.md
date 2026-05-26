@@ -172,4 +172,4 @@ El proyecto está optimizado para Vercel. No requiere configuración adicional.
 
 ---
 
-*BugAI · España · LATAM · USA · hola@bugai.io*
+*BugAI · España · LATAM · USA · holabugai@gmail.com*

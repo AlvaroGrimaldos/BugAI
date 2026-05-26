@@ -1,0 +1,19 @@
+{
+  "name": "BugAI — Automatización con IA para Retail y E-commerce",
+  "short_name": "BugAI",
+  "description": "Diseñamos e implementamos flujos de automatización con IA. Recupera entre 15 y 40 horas semanales.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#5B21B6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "es"
+}
