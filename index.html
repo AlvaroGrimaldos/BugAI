@@ -10,44 +10,65 @@
     <meta name="theme-color" content="#5B21B6" />
 
     <!-- Open Graph -->
-    <meta property="og:title"       content="BugAI — Automatización con IA" />
+    <meta property="og:title" content="BugAI — Automatización con IA" />
     <meta property="og:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
-    <meta property="og:type"        content="website" />
-    <meta property="og:url"         content="https://bug-ai-1-0-0.vercel.app/" />
-    <!-- <meta property="og:image" content="/og-image.png" /> -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bug-ai-1-0-0.vercel.app/" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="BugAI — Automatización con IA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BugAI — Automatización con IA" />
     <meta name="twitter:description" content="Recupera entre 15 y 40 horas semanales con automatizaciones de IA a medida." />
 
-    <!--
-      Favicon inline SVG — hexágono violeta con acento cian.
-      Reemplaza por un .ico o .png real en producción.
-    -->
+    <!-- Favicon -->
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><polygon points='18,2 32,10 32,26 18,34 4,26 4,10' fill='%235B21B6'/><circle cx='18' cy='18' r='3' fill='%2306B6D4'/></svg>"
     />
 
-    <!--
-      Precarga de fuentes para evitar Flash of Unstyled Text (FOUT).
-      El import real está en src/index.css.
-    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
 
   <body class="antialiased">
-    <!--
-      El tema inicial 'dark' se aplica aquí en el atributo class de <html>
-      para evitar el parpadeo (flash) al cargar la página.
-      ThemeContext lo sincroniza en tiempo de ejecución.
-    -->
+
     <div id="root"></div>
 
-    <!-- Vite inyecta el script del bundle aquí en build -->
+    <!-- React App -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- CHATBASE (KAI BOT) -->
+    <script>
+      (function(){
+        if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+          window.chatbase=(...arguments)=>{
+            if(!window.chatbase.q){window.chatbase.q=[]}
+            window.chatbase.q.push(arguments)
+          };
+          window.chatbase=new Proxy(window.chatbase,{
+            get(target,prop){
+              if(prop==="q"){return target.q}
+              return(...args)=>target(prop,...args)
+            }
+          });
+        }
+
+        const onLoad=function(){
+          const script=document.createElement("script");
+          script.src="https://www.chatbase.co/embed.min.js";
+          script.id="sC-hkYsvOPJFVxUYie6u2";
+          script.domain="www.chatbase.co";
+          document.body.appendChild(script);
+        };
+
+        if(document.readyState==="complete"){
+          onLoad();
+        }else{
+          window.addEventListener("load",onLoad);
+        }
+      })();
+    </script>
+
   </body>
 </html>
