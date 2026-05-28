@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 import kaiOpen from '../../assets/KAI_chat.png'
 import kaiClosed from '../../assets/KAI_chat_ojos_cerrados.png'
+import Section from '../ui/Section'
+import SectionHeader from '../ui/SectionHeader'
 
 const KAI_TAGS_KEYS = ['kai.tag_1', 'kai.tag_2', 'kai.tag_3']
 
@@ -19,11 +21,7 @@ export default function KaiChat() {
     return () => clearInterval(interval)
   }, [])
   return (
-    <section
-      id="kai"
-      aria-label={t('kai.aria')}
-      className="hidden lg:block scroll-mt-16 relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden"
-    >
+    <Section id="kai" ariaLabel={t('kai.aria')} variant="dark" className="hidden lg:block relative overflow-hidden" noContainer>
       <div className="absolute inset-0 bg-grid opacity-[0.35] dark:opacity-[0.08] pointer-events-none" aria-hidden="true" />
 
       <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-brand-violet/5 blur-3xl pointer-events-none" aria-hidden="true" />
@@ -31,19 +29,11 @@ export default function KaiChat() {
 
       <div className="relative max-w-6xl mx-auto">
 
-        <div className="text-center mb-14">
-          <span className="font-mono text-[11px] text-brand-cyan tracking-[2px] uppercase">
-            {t('kai.badge')}
-          </span>
-
-          <h2 className="font-head font-extrabold text-[clamp(26px,4vw,46px)] text-zinc-950 dark:text-zinc-100 mt-3 tracking-tight">
-            {t('kai.title')} <span className="text-gradient">KAI</span>
-          </h2>
-
-          <p className="font-body text-[15px] text-zinc-500 dark:text-zinc-400 mt-3 max-w-xl mx-auto">
-            {t('kai.subtitle')}
-          </p>
-        </div>
+        <SectionHeader
+          badge={t('kai.badge')}
+          title={<>{t('kai.title')} <span className="text-gradient">KAI</span></>}
+          subtitle={t('kai.subtitle')}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.4fr] gap-12 items-center">
 
@@ -93,6 +83,7 @@ export default function KaiChat() {
           <div className="w-full h-[600px] rounded-2xl overflow-hidden border border-brand-violet/25 shadow-xl bg-white dark:bg-dark-card">
             <iframe
               src="https://www.chatbase.co/chatbot-iframe/sC-hkYsvOPJFVxUYie6u2"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
               style={{
                 width: '100%',
                 height: '100%',
@@ -103,6 +94,6 @@ export default function KaiChat() {
 
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
