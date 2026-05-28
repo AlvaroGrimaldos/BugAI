@@ -1,4 +1,4 @@
-export default function Button({ variant = 'primary', href, className = '', children }) {
+export default function Button({ variant = 'primary', href, className = '', children, ...props }) {
   const base = 'font-body font-semibold no-underline inline-flex items-center transition-all duration-200'
 
   const styles = {
@@ -19,8 +19,8 @@ export default function Button({ variant = 'primary', href, className = '', chil
   const cls = `${base} ${styles[variant] || styles.primary} ${className}`
 
   if (href) {
-    return <a href={href} className={cls}>{children}</a>
+    return <a href={href} className={cls} {...props}>{children}</a>
   }
 
-  return <button className={`${cls} cursor-pointer`}>{children}</button>
+  return <button className={`${cls} cursor-pointer`} {...props}>{children}</button>
 }

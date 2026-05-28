@@ -18,6 +18,7 @@
 import { useTheme }    from '../../context/ThemeContext'
 import { useLanguage } from '../../context/LanguageContext'
 import { TECH_STACK }  from '../../constants/data'
+import Button from '../ui/Button'
 
 export default function Hero() {
   const { theme } = useTheme()
@@ -85,37 +86,14 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-wrap items-center justify-center gap-3.5">
-          <a
-            href="#contact"
-            className="
-              inline-flex items-center gap-2 no-underline
-              bg-gradient-to-br from-brand-violet to-brand-violet-mid
-              text-white font-body font-semibold text-base
-              px-7 py-3.5 rounded-xl
-              shadow-[0_0_28px_rgba(91,33,182,0.45)]
-              hover:shadow-[0_0_48px_rgba(91,33,182,0.65)]
-              hover:-translate-y-0.5 transition-all duration-200
-            "
-          >
+          <Button href="#contact" variant="hero" className="text-base px-7 py-3.5 gap-2">
             {t('hero.cta_primary')}
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </a>
+          </Button>
 
-          <a
-            href="#services"
-            className="
-              inline-flex items-center no-underline
-              bg-white/10 dark:bg-white/5
-              text-zinc-800 dark:text-zinc-200
-              font-body font-medium text-base
-              px-7 py-3.5 rounded-xl
-              border border-violet-200 dark:border-brand-violet/25
-              hover:border-brand-violet-mid transition-colors duration-200
-              backdrop-blur-sm
-            "
-          >
+          <Button href="#services" variant="secondary" className="text-base px-7 py-3.5">
             {t('hero.cta_secondary')}
-          </a>
+          </Button>
         </div>
 
         {/* Tech stack pills */}
