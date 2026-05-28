@@ -20,7 +20,7 @@ function CheckIcon({ color }) {
 export default function Services() {
   const { t } = useLanguage()
   return (
-    <section id="services" aria-label={t('services.aria')} className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
+    <section id="services" aria-label={t('services.aria')} className="scroll-mt-16 py-24 px-6 bg-violet-50 dark:bg-dark-bg">
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-14">

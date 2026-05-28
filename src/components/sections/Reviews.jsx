@@ -27,7 +27,7 @@ export default function Reviews() {
     <section
       id="reviews"
       aria-label={t('reviews.aria')}
-      className="py-24 px-6 bg-white dark:bg-dark-card border-t border-black/5 dark:border-white/5"
+      className="scroll-mt-16 py-24 px-6 bg-white dark:bg-dark-card border-t border-black/5 dark:border-white/5"
     >
       <div className="max-w-3xl mx-auto">
 

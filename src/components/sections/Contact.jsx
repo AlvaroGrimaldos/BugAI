@@ -68,7 +68,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" aria-label={t('contact.aria')} className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
+    <section id="contact" aria-label={t('contact.aria')} className="scroll-mt-16 py-24 px-6 bg-violet-50 dark:bg-dark-bg">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-14 items-start">
 
         {/* ── Columna izquierda: info + WhatsApp CTA ── */}
