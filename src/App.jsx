@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { ThemeProvider } from '../src/context/ThemeContext'
 import { LanguageProvider, useLanguage } from '../src/context/LanguageContext'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 import Navbar  from '../src/components/layout/Navbar'
 import Footer  from '../src/components/layout/Footer'
@@ -75,6 +77,8 @@ export default function App() {
     <LanguageProvider>
       <ThemeProvider>
         <AppContent />
+        <Analytics />
+        <SpeedInsights />
       </ThemeProvider>
     </LanguageProvider>
   )
