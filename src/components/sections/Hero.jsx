@@ -26,7 +26,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 px-6"
+      className="scroll-mt-16 relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 px-6"
     >
       {/* ── Capa 1: Imagen de fondo ── */}
       <div

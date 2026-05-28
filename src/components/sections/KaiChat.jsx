@@ -22,7 +22,7 @@ export default function KaiChat() {
     <section
       id="kai"
       aria-label={t('kai.aria')}
-      className="relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden"
+      className="hidden lg:block scroll-mt-16 relative py-24 px-6 bg-violet-50 dark:bg-dark-bg overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid opacity-[0.35] dark:opacity-[0.08] pointer-events-none" aria-hidden="true" />
 
