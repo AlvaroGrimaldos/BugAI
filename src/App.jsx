@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from '../src/context/ThemeContext'
 import { LanguageProvider, useLanguage } from '../src/context/LanguageContext'
 
@@ -75,6 +76,7 @@ export default function App() {
     <LanguageProvider>
       <ThemeProvider>
         <AppContent />
+        <Analytics />
       </ThemeProvider>
     </LanguageProvider>
   )
