@@ -117,7 +117,7 @@ export const CONTACT_INFO = [
   { label: 'LINKEDIN',   value: 'BugAI' },
 ]
 
-export const WHATSAPP_URL = 'https://wa.me/+573105708389'
+export const WHATSAPP_URL = import.meta.env.VITE_WHATSAPP_URL || 'https://wa.me/+573105708389'
 
 export const TECH_STACK = ['n8n', 'OpenAI API', 'Claude API', 'Manychat', 'Airtable']
 
@@ -144,4 +144,4 @@ REGLAS:
 7. No uses lenguaje de "lanzamiento" ni "precios especiales de lanzamiento"
 8. No hagas chistes ni uses emojis excesivos`
 
-export const FORMSPREE_URL = 'https://formspree.io/f/xnjwwjag'
+export const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || 'https://formspree.io/f/xnjwwjag'

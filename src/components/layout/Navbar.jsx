@@ -14,6 +14,8 @@ import { useLanguage } from '../../context/LanguageContext'
 import LogoSVG      from '../ui/LogoSVG'
 import ThemeToggle  from '../ui/ThemeToggle'
 import LangToggle   from '../ui/LangToggle'
+import IconButton   from '../ui/IconButton'
+import Button       from '../ui/Button'
 import { NAV_LINKS } from '../../constants/data'
 
 // Ícono hamburguesa
@@ -84,30 +86,21 @@ export default function Navbar() {
           <LangToggle />
           <ThemeToggle />
 
-          <a
-            href="#contact"
-            className="
-              bg-gradient-to-r from-brand-violet to-brand-cyan-dark
-              text-white font-body font-semibold text-sm px-4 py-2 rounded-lg
-              transition-all duration-200 no-underline
-              hover:shadow-lg hover:shadow-brand-violet/25
-            "
-          >
+          <Button href="#contact" variant="primary" className="text-sm px-4 py-2">
             {t('nav.free_diagnosis')}
-          </a>
+          </Button>
         </div>
 
         {/* ── Botón hamburguesa mobile ── */}
         <div className="flex md:hidden items-center gap-3">
           <LangToggle />
           <ThemeToggle />
-          <button
+          <IconButton
             onClick={() => setOpen(o => !o)}
-            aria-label={t('nav.aria_open_menu')}
-            className="text-zinc-700 dark:text-zinc-300 cursor-pointer bg-transparent border-0 p-1"
+            ariaLabel={t('nav.aria_open_menu')}
           >
             {open ? <CloseIcon /> : <MenuIcon />}
-          </button>
+          </IconButton>
         </div>
 
       </nav>
@@ -144,13 +137,9 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
 
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="bg-gradient-to-r from-brand-violet to-brand-cyan-dark text-white font-body font-semibold text-lg px-10 py-3.5 rounded-xl no-underline mt-2 shadow-lg shadow-brand-violet/30 hover:shadow-xl hover:shadow-brand-violet/40 hover:-translate-y-0.5 transition-all duration-200"
-          >
+          <Button href="#contact" variant="primary" className="text-lg px-10 py-3.5 rounded-xl mt-2 shadow-lg shadow-brand-violet/30" onClick={() => setOpen(false)}>
             {t('nav.free_diagnosis')}
-          </a>
+          </Button>
         </div>
       </div>
     </>

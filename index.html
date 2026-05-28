@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Security: Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' https://www.chatbase.co 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+      font-src 'self' https://fonts.gstatic.com;
+      frame-src 'self' https://www.chatbase.co;
+      connect-src 'self' https://formspree.io https://api.anthropic.com https://vitals.vercel-analytics.com https://www.chatbase.co;
+      img-src 'self' data:;
+      manifest-src 'self';
+    ">
+
     <!-- SEO básico -->
     <title>BugAI — Automatización con IA para Retail y E-commerce</title>
     <meta name="description" content="BugAI diseña e implementa flujos de automatización con IA para retail y e-commerce. Recupera entre 15 y 40 horas semanales, escala sin contratar personal y conecta tus herramientas (CRM, tienda online, WhatsApp, APIs). Diagnóstico gratuito. España, LATAM y USA." />
