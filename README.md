@@ -1,4 +1,4 @@
-# BugAI Landing Page v2.0
+# BugAI Landing Page v3.0
 
 Landing page modular de **BugAI** construida con **React 18 + Vite + Tailwind CSS v3**.
 
@@ -21,34 +21,40 @@ bugai-landing/
     ├── App.jsx                         # Raíz: ensambla todas las secciones
     ├── index.css                       # Tailwind base + utilidades custom
     │
+    ├── assets/
+    │   ├── KAI_chat.png                # Mascota KAI (ojos abiertos)
+    │   ├── KAI_chat_ojos_cerrados.png  # Mascota KAI (ojos cerrados, parpadeo)
+    │   ├── hero.png                    # Imagen de fondo del Hero
+    │   ├── icon-png.png                # Icono BugAI
+    │   └── icon-png-zoom.png           # Logo BugAI
+    │
     ├── context/
-    │   └── ThemeContext.jsx            # Estado global del tema claro/oscuro
+    │   ├── ThemeContext.jsx            # Estado global del tema claro/oscuro
+    │   └── LanguageContext.jsx         # Estado global del idioma (ES/EN)
     │
     ├── constants/
-    │   └── data.js                     # Todos los datos estáticos (planes, reseñas, etc.)
-    │
-    ├── hooks/
-    │   └── useChat.js                  # Lógica del chat con la API de Claude
+    │   ├── data.js                     # Todos los datos estáticos (planes, reseñas, etc.)
+    │   └── translations.js             # Diccionario de traducciones ES/EN
     │
     └── components/
         │
         ├── ui/                         # Componentes de interfaz reutilizables
-        │   ├── LogoSVG.jsx             # Logo hexagonal con red neuronal
-        │   ├── KaiSVG.jsx              # Mascota KAI animada (SVG)
+        │   ├── LogoSVG.jsx             # Logo oficial BugAI
         │   ├── Avatar.jsx              # Foto de perfil con fallback a iniciales
-        │   └── ThemeToggle.jsx         # Botón sol/luna para cambiar tema
+        │   ├── ThemeToggle.jsx         # Botón sol/luna para cambiar tema
+        │   └── LangToggle.jsx          # Botón ES/EN para cambiar idioma
         │
         ├── layout/                     # Estructura de página
         │   ├── Navbar.jsx              # Barra de navegación fija con glassmorphism
-        │   └── Footer.jsx              # Pie de página minimalista
+        │   └── Footer.jsx              # Pie de página minimalista con redes sociales
         │
         └── sections/                   # Secciones de la landing (orden en App.jsx)
             ├── Hero.jsx                # Hero con imagen de fondo y CTAs
             ├── Stats.jsx               # 4 métricas de impacto
-            ├── Services.jsx            # 4 planes de precio de lanzamiento
-            ├── HowItWorks.jsx          # Proceso en 3 pasos + banner de imagen
-            ├── KaiChat.jsx             # Mascota KAI + chatbot con Claude API
-            ├── Reviews.jsx             # Testimonios con selector y rating global
+            ├── Services.jsx            # 4 planes de precio
+            ├── HowItWorks.jsx          # Proceso en 3 pasos
+            ├── KaiChat.jsx             # Mascota KAI con parpadeo + chatbot
+            ├── Reviews.jsx             # Compromisos de garantía
             └── Contact.jsx             # Formulario Formspree + info de contacto
 ```
 
@@ -60,7 +66,7 @@ bugai-landing/
 # 1. Instalar dependencias
 npm install
 
-# 2. Servidor de desarrollo (abre en http://localhost:3000)
+# 2. Servidor de desarrollo (abre en http://localhost:5173)
 npm run dev
 
 # 3. Build de producción
@@ -76,7 +82,11 @@ npm run preview
 
 ### Textos y datos
 Todo el contenido estático está centralizado en **`src/constants/data.js`**.  
-Edita planes, testimonios, pasos del proceso, links de contacto y el system prompt de KAI desde un solo archivo.
+Edita planes, pasos del proceso, links de contacto y el system prompt de KAI desde un solo archivo.
+
+### Traducciones
+Los textos visibles se traducen mediante **`src/constants/translations.js`**.  
+El idioma se controla desde el botón ES/EN en la Navbar y se persiste en `localStorage` bajo la clave `bugai-lang`. El valor por defecto es español (`es`).
 
 ### Tema e identidad visual
 Los colores de marca, tipografías y animaciones personalizadas se definen en **`tailwind.config.js`**.
@@ -91,43 +101,25 @@ cyan:           '#06B6D4'
 ```
 
 ### Modo claro / oscuro
-El toggle está en la Navbar. El tema se persiste en `localStorage`.  
-Las variantes de Tailwind `dark:` se activan mediante la clase `dark` en `<html>`.
+El toggle está en la Navbar. El tema se persiste en `localStorage` bajo la clave `bugai-theme`.  
+Las variantes de Tailwind `dark:` se activan mediante la clase `dark` en `<html>`.  
+El valor por defecto es tema claro (`light`).
 
 ---
 
-## Imágenes — Guía de integración
+## Imágenes — Assets del proyecto
 
-Reemplaza los placeholders en los archivos indicados con las rutas de tus imágenes.
+| Archivo                        | Ubicación             | Descripción                  |
+|--------------------------------|------------------------|------------------------------|
+| `KAI_chat.png`                 | `src/assets/`          | Mascota KAI (ojos abiertos)  |
+| `KAI_chat_ojos_cerrados.png`   | `src/assets/`          | Mascota KAI (ojos cerrados)  |
+| `hero.png`                     | `src/assets/`          | Fondo del Hero               |
+| `icon-png.png`                 | `src/assets/`          | Icono BugAI                  |
+| `icon-png-zoom.png`            | `src/assets/`          | Logo BugAI (Navbar/Footer)   |
 
-| ID     | Archivo                              | Dónde reemplazar         | Tamaño      |
-|--------|--------------------------------------|--------------------------|-------------|
-| IMG_01 | `src/components/sections/Hero.jsx`   | `YOUR_HERO_BG_URL`       | 1920×900px  |
-| IMG_03 | `src/components/sections/HowItWorks.jsx` | `YOUR_PROCESS_IMG_URL` | 1100×260px |
-| IMG_04 | `src/constants/data.js`              | `YOUR_AVATAR_1_URL`      | 200×200px   |
-| IMG_05 | `src/constants/data.js`              | `YOUR_AVATAR_2_URL`      | 200×200px   |
-| IMG_06 | `src/constants/data.js`              | `YOUR_AVATAR_3_URL`      | 200×200px   |
-| IMG_07 | `src/components/sections/Contact.jsx`| `YOUR_CONTACT_IMG_URL`   | 600×200px   |
+### KAI animado (parpadeo)
 
-### Prompts Gemini para generar las imágenes con IA
-
-**IMG_01 — Hero Background**  
-> "Cinematic wide shot of a futuristic digital workspace, deep space background with flowing violet #5B21B6 and cyan #06B6D4 glowing circuit-board patterns and neural network connections, abstract data streams, no people, ultra detailed, 8K render, dark atmosphere, horizontal 16:9"
-
-**IMG_03 — Proceso / Consulta remota**  
-> "Two professionals in a modern minimal home office on a video call, one person at a desk with dual monitors showing automation dashboards, warm ambient light, remote work atmosphere, cinematic shallow depth of field, horizontal 16:9"
-
-**IMG_04 — Avatar María G.**  
-> "Professional corporate headshot of a Spanish woman in her early 30s, warm smile, business casual navy blouse, neutral light gray background, natural studio lighting, photorealistic"
-
-**IMG_05 — Avatar Carlos R.**  
-> "Professional corporate headshot of a Colombian man in his late 30s, confident expression, dark blazer, clean white background, corporate portrait lighting, photorealistic"
-
-**IMG_06 — Avatar Ana V.**  
-> "Professional corporate headshot of a Mexican woman in her 40s, warm professional smile, business attire in deep violet, soft neutral background, high-end corporate photography"
-
-**IMG_07 — Foto decorativa contacto**  
-> "Modern minimal home office desk setup, top-down angle, laptop open with code dashboard, small succulent plant, a notebook, soft violet ambient backlighting, dark moody atmosphere, no people, vertical 4:5 format, cinematic"
+KAI parpadea automáticamente cada ~4 segundos. Las dos imágenes (`KAI_chat.png` y `KAI_chat_ojos_cerrados.png`) están superpuestas y se alternan por opacidad, de modo que solo los ojos cambian sin ningún desplazamiento.
 
 ---
 
@@ -164,11 +156,12 @@ El proyecto está optimizado para Vercel. No requiere configuración adicional.
 | Herramienta        | Versión  | Rol                                  |
 |--------------------|----------|--------------------------------------|
 | React              | 18.3     | UI framework                         |
-| Vite               | 5.4      | Bundler y servidor de desarrollo     |
+| Vite               | 8.0      | Bundler y servidor de desarrollo     |
 | Tailwind CSS       | 3.4      | Estilos utilitarios                  |
 | PostCSS            | 8.4      | Procesador de CSS (requerido por TW) |
 | Claude API         | Sonnet   | Chatbot de KAI                       |
 | Formspree          | —        | Backend del formulario de contacto   |
+| n8n                | —        | Plataforma principal de automatización |
 
 ---
 
