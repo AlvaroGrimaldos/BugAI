@@ -8,12 +8,12 @@
 
 import { createContext, useContext, useState, useEffect } from 'react'
 
-const ThemeContext = createContext({ theme: 'dark', toggle: () => {} })
+const ThemeContext = createContext({ theme: 'light', toggle: () => {} })
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    try { return localStorage.getItem('bugai-theme') || 'dark' }
-    catch { return 'dark' }
+    try { return localStorage.getItem('bugai-theme') || 'light' }
+    catch { return 'light' }
   })
 
   // Sincroniza la clase 'dark' en <html> con el estado del tema

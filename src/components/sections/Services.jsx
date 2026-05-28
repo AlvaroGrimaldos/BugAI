@@ -7,6 +7,7 @@
  */
 
 import { PLANS } from '../../constants/data'
+import { useLanguage } from '../../context/LanguageContext'
 
 function CheckIcon({ color }) {
   return (
@@ -17,19 +18,20 @@ function CheckIcon({ color }) {
 }
 
 export default function Services() {
+  const { t } = useLanguage()
   return (
-    <section id="services" aria-label="Planes y precios" className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
+    <section id="services" aria-label={t('services.aria')} className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-14">
           <span className="font-mono text-[11px] text-brand-cyan tracking-[2px] uppercase">
-            Planes
+            {t('services.badge')}
           </span>
           <h2 className="font-head font-extrabold text-[clamp(26px,4vw,46px)] text-zinc-950 dark:text-zinc-100 mt-3 tracking-tight">
-            Servicios a medida
+            {t('services.title')}
           </h2>
           <p className="font-body text-[15px] text-zinc-500 dark:text-zinc-400 mt-3 max-w-md mx-auto">
-            Automatizaciones diseñadas para retail y e-commerce. Pago 50% al inicio, 50% a la entrega.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -56,12 +58,12 @@ export default function Services() {
                       px-4 py-1 rounded-full whitespace-nowrap shadow-md
                     "
                   >
-                    MÁS POPULAR
+                    {t('services.popular')}
                   </div>
                 )}
 
                 <p className="font-mono text-[10px] tracking-widest mb-1.5" style={{ color: plan.accent }}>
-                  {plan.monthly ? 'MENSUAL' : `ENTREGA EN ${plan.delivery.toUpperCase()}`}
+                  {plan.monthly ? t('services.monthly') : t('services.delivery_in', { delivery: t(plan.deliveryKey).toUpperCase() })}
                 </p>
 
                 <h3 className="font-head font-bold text-xl text-zinc-950 dark:text-zinc-100 mb-1.5">
@@ -69,7 +71,7 @@ export default function Services() {
                 </h3>
 
                 <p className="font-body text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
-                  {plan.desc}
+                  {t(plan.descKey)}
                 </p>
 
                 <div className="mb-5">
@@ -78,7 +80,7 @@ export default function Services() {
                       €{plan.price}
                     </span>
                     {plan.monthly && (
-                      <span className="font-body text-sm text-zinc-400">/mes</span>
+                      <span className="font-body text-sm text-zinc-400">{t('services.per_month')}</span>
                     )}
                   </div>
                 </div>
@@ -87,7 +89,7 @@ export default function Services() {
                   {plan.features.map((feat, j) => (
                     <li key={j} className="flex items-start gap-2 font-body text-[13px] text-zinc-500 dark:text-zinc-400">
                       <CheckIcon color={plan.accent} />
-                      {feat}
+                      {t(feat)}
                     </li>
                   ))}
                 </ul>
@@ -105,7 +107,7 @@ export default function Services() {
                     }
                   `}
                 >
-                  Solicitar {plan.name}
+                  {t('services.request', { name: plan.name })}
                 </a>
               </div>
             )

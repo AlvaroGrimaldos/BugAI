@@ -5,10 +5,12 @@
  */
 
 import { STATS } from '../../constants/data'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Stats() {
+  const { t } = useLanguage()
   return (
-    <section aria-label="Estadísticas de impacto" className="bg-white dark:bg-dark-card border-y border-black/5 dark:border-white/5 py-16 px-6">
+    <section aria-label={t('stats.aria')} className="bg-white dark:bg-dark-card border-y border-black/5 dark:border-white/5 py-16 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
         {STATS.map((stat, i) => (
           <div
@@ -28,7 +30,7 @@ export default function Stats() {
 
             {/* Etiqueta descriptiva */}
             <span className="font-body text-sm text-zinc-500 dark:text-zinc-400 leading-snug max-w-[120px]">
-              {stat.label}
+              {t(stat.labelKey)}
             </span>
           </div>
         ))}

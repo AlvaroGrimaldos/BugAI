@@ -10,8 +10,10 @@
 
 import { useState, useEffect } from 'react'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 import LogoSVG      from '../ui/LogoSVG'
 import ThemeToggle  from '../ui/ThemeToggle'
+import LangToggle   from '../ui/LangToggle'
 import { NAV_LINKS } from '../../constants/data'
 
 // Ícono hamburguesa
@@ -33,6 +35,7 @@ const CloseIcon = () => (
 
 export default function Navbar() {
   const { theme }          = useTheme()
+  const { t }              = useLanguage()
   const [open,    setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -50,10 +53,10 @@ export default function Navbar() {
     : 'bg-transparent'
 
   return (
-    <nav aria-label="Navegación principal" className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
+    <nav aria-label={t('nav.aria_main')} className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
 
       {/* Logo + wordmark */}
-      <a href="#hero" className="flex items-center gap-2.5 gap-r-0 no-underline" aria-label="BugAI - Ir al inicio">
+      <a href="#hero" className="flex items-center gap-2.5 gap-r-0 no-underline" aria-label={t('nav.aria_logo')}>
         <LogoSVG size={40} />
         <span className="font-head font-bold text-xl text-zinc-950 dark:text-zinc-100">
           Bug<span className="text-brand-cyan"> AI</span>
@@ -64,14 +67,15 @@ export default function Navbar() {
       <div className="hidden md:flex items-center gap-7">
         {NAV_LINKS.map(link => (
           <a
-            key={link.label}
+            key={link.labelKey}
             href={link.href}
             className="font-body text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors duration-200 no-underline"
           >
-            {link.label}
+            {t(link.labelKey)}
           </a>
         ))}
 
+        <LangToggle />
         <ThemeToggle />
 
         <a
@@ -83,16 +87,17 @@ export default function Navbar() {
             hover:shadow-lg hover:shadow-brand-violet/25
           "
         >
-          Diagnóstico gratis
+          {t('nav.free_diagnosis')}
         </a>
       </div>
 
       {/* ── Botón hamburguesa mobile ── */}
       <div className="flex md:hidden items-center gap-3">
+        <LangToggle />
         <ThemeToggle />
         <button
           onClick={() => setOpen(o => !o)}
-          aria-label="Abrir menú"
+          aria-label={t('nav.aria_open_menu')}
           className="text-zinc-700 dark:text-zinc-300 cursor-pointer bg-transparent border-0 p-1"
         >
           {open ? <CloseIcon /> : <MenuIcon />}
@@ -109,12 +114,12 @@ export default function Navbar() {
         >
           {NAV_LINKS.map(link => (
             <a
-              key={link.label}
+              key={link.labelKey}
               href={link.href}
               onClick={() => setOpen(false)}
               className="font-head font-bold text-3xl text-zinc-950 dark:text-zinc-100 no-underline"
             >
-              {link.label}
+              {t(link.labelKey)}
             </a>
           ))}
 
@@ -123,7 +128,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
             className="bg-brand-violet text-white font-body font-semibold text-lg px-8 py-3 rounded-xl no-underline mt-4"
           >
-            Diagnóstico gratis
+            {t('nav.free_diagnosis')}
           </a>
         </div>
       )}

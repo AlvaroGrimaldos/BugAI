@@ -11,6 +11,7 @@
  */
 
 import { useState }                    from 'react'
+import { useLanguage }                 from '../../context/LanguageContext'
 import { CONTACT_INFO, FORMSPREE_URL, WHATSAPP_URL } from '../../constants/data'
 
 const CheckCircleIcon = () => (
@@ -43,6 +44,7 @@ const INPUT_CLS = `
 `
 
 export default function Contact() {
+  const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', business: '', message: '' })
   const [status, setStatus] = useState('idle')
 
@@ -56,7 +58,7 @@ export default function Contact() {
       const res = await fetch(FORMSPREE_URL, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify({ ...form, _subject: `BugAI — Consulta de ${form.name}` }),
+        body:    JSON.stringify({ ...form, _subject: t('contact.email_subject', { name: form.name }) }),
       })
       setStatus(res.ok ? 'success' : 'error')
       if (res.ok) setForm({ name: '', email: '', business: '', message: '' })
@@ -66,20 +68,19 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" aria-label="Formulario de contacto" className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
+    <section id="contact" aria-label={t('contact.aria')} className="py-24 px-6 bg-violet-50 dark:bg-dark-bg">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-14 items-start">
 
         {/* ── Columna izquierda: info + WhatsApp CTA ── */}
         <div>
           <span className="font-mono text-[11px] text-brand-cyan tracking-[2px] uppercase">
-            Contacto
+            {t('contact.badge')}
           </span>
           <h2 className="font-head font-extrabold text-[clamp(24px,3.5vw,40px)] text-zinc-950 dark:text-zinc-100 mt-3 tracking-tight leading-tight">
-            Empieza con un<br />diagnóstico gratuito
+            {t('contact.title_1')}<br />{t('contact.title_2')}
           </h2>
           <p className="font-body text-[14px] text-zinc-500 dark:text-zinc-400 mt-4 leading-relaxed">
-            30 minutos es todo lo que necesitamos para identificar los procesos que puedes
-            automatizar hoy. Sin compromiso.
+            {t('contact.subtitle')}
           </p>
 
           {/* WhatsApp CTA principal */}
@@ -100,7 +101,7 @@ export default function Contact() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Escribir por WhatsApp
+            {t('contact.whatsapp')}
           </a>
 
           {/* Datos de contacto */}
@@ -134,11 +135,10 @@ export default function Contact() {
           {/* Badge de garantía */}
           <div className="mt-8 p-4 rounded-xl bg-brand-cyan/5 border border-brand-cyan/20">
             <p className="font-mono text-[10px] text-brand-cyan tracking-widest mb-2">
-              ★ GARANTÍA INCLUIDA
+              {t('contact.guarantee_badge')}
             </p>
             <p className="font-body text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Todos los flujos están garantizados. Si algo falla por nuestra parte,
-              lo corregimos sin costo. Respondemos en máximo 24 horas hábiles.
+              {t('contact.guarantee_text')}
             </p>
           </div>
         </div>
@@ -152,16 +152,16 @@ export default function Contact() {
                 <CheckCircleIcon />
               </div>
               <h3 className="font-head font-bold text-[21px] text-zinc-950 dark:text-zinc-100 mb-3">
-                ¡Mensaje recibido!
+                {t('contact.success_title')}
               </h3>
               <p className="font-body text-[14px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
-                Te contactaremos en máximo 24 horas hábiles para coordinar tu diagnóstico gratuito.
+                {t('contact.success_desc')}
               </p>
               <button
                 onClick={() => setStatus('idle')}
                 className="font-body text-sm text-zinc-500 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2 cursor-pointer bg-transparent hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
               >
-                Enviar otro mensaje
+                {t('contact.success_btn')}
               </button>
             </div>
 
@@ -169,45 +169,45 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label="Nombre *">
+                <Field label={t('contact.field_name')}>
                   <input
                     name="name" type="text" required
                     value={form.name} onChange={handleChange}
-                    placeholder="Tu nombre"
+                    placeholder={t('contact.field_name_placeholder')}
                     className={INPUT_CLS}
                   />
                 </Field>
-                <Field label="Email *">
+                <Field label={t('contact.field_email')}>
                   <input
                     name="email" type="email" required
                     value={form.email} onChange={handleChange}
-                    placeholder="tu@email.com"
+                    placeholder={t('contact.field_email_placeholder')}
                     className={INPUT_CLS}
                   />
                 </Field>
               </div>
 
-              <Field label="Negocio / Empresa">
+              <Field label={t('contact.field_business')}>
                 <input
                   name="business" type="text"
                   value={form.business} onChange={handleChange}
-                  placeholder="Nombre o tipo de negocio"
+                  placeholder={t('contact.field_business_placeholder')}
                   className={INPUT_CLS}
                 />
               </Field>
 
-              <Field label="¿Qué proceso quieres automatizar? *">
+              <Field label={t('contact.field_message')}>
                 <textarea
                   name="message" required rows={4}
                   value={form.message} onChange={handleChange}
-                  placeholder="Cuéntanos brevemente qué proceso consume más tiempo en tu negocio…"
+                  placeholder={t('contact.field_message_placeholder')}
                   className={`${INPUT_CLS} resize-y min-h-[90px] leading-relaxed`}
                 />
               </Field>
 
               {status === 'error' && (
                 <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/30 rounded-lg px-4 py-3 font-body text-[13px] text-red-600 dark:text-red-400">
-                  Error al enviar. Escríbenos directamente a <strong>holabugai@gmail.com</strong>
+                  {t('contact.error_msg')} <strong>holabugai@gmail.com</strong>
                 </div>
               )}
 
@@ -224,11 +224,11 @@ export default function Contact() {
                   ${status === 'sending' ? 'opacity-60 cursor-not-allowed hover:translate-y-0' : ''}
                 `}
               >
-                {status === 'sending' ? 'Enviando…' : 'Solicitar diagnóstico gratuito →'}
+                {status === 'sending' ? t('contact.btn_sending') : t('contact.btn_idle')}
               </button>
 
               <p className="font-mono text-[9px] text-zinc-400 text-center">
-                Respondemos en máximo 24 horas hábiles · holabugai@gmail.com
+                {t('contact.footer_note')}
               </p>
             </form>
           )}

@@ -16,10 +16,12 @@
  */
 
 import { useTheme }    from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 import { TECH_STACK }  from '../../constants/data'
 
 export default function Hero() {
   const { theme } = useTheme()
+  const { t }     = useLanguage()
 
   return (
     <section
@@ -64,21 +66,21 @@ export default function Hero() {
         <div className="inline-flex items-center gap-2 bg-brand-violet/20 border border-brand-violet-mid/40 rounded-full px-4 py-1.5 mb-8">
           <span className="w-[7px] h-[7px] rounded-full bg-brand-cyan animate-glow-pulse" />
           <span className="font-mono text-[11px] text-brand-cyan tracking-wider">
-            AUTOMATIZACIÓN CON IA · RETAIL Y E-COMMERCE
+            {t('hero.badge')}
           </span>
         </div>
 
         {/* Headline principal */}
         <h1 className="font-head font-extrabold text-[clamp(36px,7vw,76px)] leading-[1.05] tracking-tight mb-6 text-zinc-950 dark:text-zinc-100">
-          Tu negocio trabaja<br />
-          <span className="text-gradient">24/7 sin descanso</span>
+          {t('hero.title_1')}<br />
+          <span className="text-gradient">{t('hero.title_2')}</span>
         </h1>
 
         {/* Subtítulo */}
         <p className="font-body text-[clamp(15px,2.5vw,19px)] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Diseñamos e implementamos flujos de automatización con IA para que recuperes entre{' '}
-          <strong className="text-zinc-950 dark:text-zinc-100 font-semibold">15 y 40 horas semanales</strong>{' '}
-          y escales sin contratar más personal. España, LATAM y USA.
+          {t('hero.subtitle_before')}{' '}
+          <strong className="text-zinc-950 dark:text-zinc-100 font-semibold">{t('hero.subtitle_strong')}</strong>{' '}
+          {t('hero.subtitle_after')}
         </p>
 
         {/* CTAs */}
@@ -95,7 +97,7 @@ export default function Hero() {
               hover:-translate-y-0.5 transition-all duration-200
             "
           >
-            Diagnóstico gratis
+            {t('hero.cta_primary')}
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
 
@@ -112,14 +114,14 @@ export default function Hero() {
               backdrop-blur-sm
             "
           >
-            Ver servicios
+            {t('hero.cta_secondary')}
           </a>
         </div>
 
         {/* Tech stack pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mt-14">
           <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 tracking-widest">
-            POWERED BY
+            {t('hero.powered_by')}
           </span>
           {TECH_STACK.map(tech => (
             <span

@@ -7,6 +7,7 @@
  */
 
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 // Ícono de Sol (modo oscuro activo → clic para ir a claro)
 function SunIcon() {
@@ -38,11 +39,12 @@ function MoonIcon() {
 
 export default function ThemeToggle({ className = '' }) {
   const { theme, toggle } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <button
       onClick={toggle}
-      aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
+      aria-label={theme === 'dark' ? t('theme.to_light') : t('theme.to_dark')}
       className={`
         w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0
         bg-violet-100 dark:bg-zinc-800
