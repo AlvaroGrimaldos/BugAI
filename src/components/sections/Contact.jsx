@@ -10,9 +10,15 @@
  * ⚙️ WHATSAPP: cambia WHATSAPP_URL en src/constants/data.js
  */
 
-import { useState }                    from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useLanguage }                 from '../../context/LanguageContext'
 import { CONTACT_INFO, FORMSPREE_URL, WHATSAPP_URL } from '../../constants/data'
+
+const MAX_LENGTHS = { name: 100, email: 254, business: 200, message: 2000 }
+
+function sanitize(val) {
+  return val.replace(/<[^>]*>/g, '').trim()
+}
 
 const CheckCircleIcon = () => (
   <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
@@ -47,21 +53,49 @@ export default function Contact() {
   const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', business: '', message: '' })
   const [status, setStatus] = useState('idle')
+  const [errors, setErrors] = useState({})
+  const lastSubmit = useRef(0)
 
-  const handleChange = e =>
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  const handleChange = e => {
+    const { name, value } = e.target
+    const max = MAX_LENGTHS[name] || 2000
+    if (value.length > max) return
+    setForm(prev => ({ ...prev, [name]: sanitize(value) }))
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
+  }
+
+  const validate = useCallback(() => {
+    const errs = {}
+    if (!form.name || form.name.length < 2) errs.name = 'Mínimo 2 caracteres'
+    if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Email inválido'
+    if (!form.message || form.message.length < 10) errs.message = 'Mínimo 10 caracteres'
+    if (form.message.length > MAX_LENGTHS.message) errs.message = 'Máximo 2000 caracteres'
+    return errs
+  }, [form])
 
   const handleSubmit = async e => {
     e.preventDefault()
+    const errs = validate()
+    setErrors(errs)
+    if (Object.keys(errs).length) return
+
+    const now = Date.now()
+    if (now - lastSubmit.current < 5000) return
+    lastSubmit.current = now
+
     setStatus('sending')
     try {
+      const safeName = sanitize(form.name).slice(0, 100)
       const res = await fetch(FORMSPREE_URL, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify({ ...form, _subject: t('contact.email_subject', { name: form.name }) }),
+        body:    JSON.stringify({ ...form, _subject: t('contact.email_subject', { name: safeName }) }),
       })
       setStatus(res.ok ? 'success' : 'error')
-      if (res.ok) setForm({ name: '', email: '', business: '', message: '' })
+      if (res.ok) {
+        setForm({ name: '', email: '', business: '', message: '' })
+        setErrors({})
+      }
     } catch {
       setStatus('error')
     }
@@ -87,7 +121,7 @@ export default function Contact() {
           <a
             href={WHATSAPP_URL}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer" referrerpolicy="no-referrer"
             className="
               mt-8 flex items-center gap-3 no-underline
               bg-emerald-600 hover:bg-emerald-700
@@ -116,7 +150,7 @@ export default function Contact() {
                     {item.value}
                   </a>
                 ) : item.label === 'INSTAGRAM' || item.label === 'TIKTOK' ? (
-                  <a href={`https://www.${item.label === 'INSTAGRAM' ? 'instagram' : 'tiktok'}.com/${item.value.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-brand-cyan transition-colors no-underline">
+                  <a href={`https://www.${item.label === 'INSTAGRAM' ? 'instagram' : 'tiktok'}.com/${item.value.replace('@', '')}`} target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" className="font-mono text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-brand-cyan transition-colors no-underline">
                     {item.value}
                   </a>
                 ) : item.label === 'LINKEDIN' ? (
@@ -174,16 +208,20 @@ export default function Contact() {
                     name="name" type="text" required
                     value={form.name} onChange={handleChange}
                     placeholder={t('contact.field_name_placeholder')}
-                    className={INPUT_CLS}
+                    maxLength={MAX_LENGTHS.name}
+                    className={`${INPUT_CLS} ${errors.name ? 'border-red-400 dark:border-red-500' : ''}`}
                   />
+                  {errors.name && <span className="font-mono text-[10px] text-red-500">{errors.name}</span>}
                 </Field>
                 <Field label={t('contact.field_email')}>
                   <input
                     name="email" type="email" required
                     value={form.email} onChange={handleChange}
                     placeholder={t('contact.field_email_placeholder')}
-                    className={INPUT_CLS}
+                    maxLength={MAX_LENGTHS.email}
+                    className={`${INPUT_CLS} ${errors.email ? 'border-red-400 dark:border-red-500' : ''}`}
                   />
+                  {errors.email && <span className="font-mono text-[10px] text-red-500">{errors.email}</span>}
                 </Field>
               </div>
 
@@ -192,6 +230,7 @@ export default function Contact() {
                   name="business" type="text"
                   value={form.business} onChange={handleChange}
                   placeholder={t('contact.field_business_placeholder')}
+                  maxLength={MAX_LENGTHS.business}
                   className={INPUT_CLS}
                 />
               </Field>
@@ -201,8 +240,10 @@ export default function Contact() {
                   name="message" required rows={4}
                   value={form.message} onChange={handleChange}
                   placeholder={t('contact.field_message_placeholder')}
-                  className={`${INPUT_CLS} resize-y min-h-[90px] leading-relaxed`}
+                  maxLength={MAX_LENGTHS.message}
+                  className={`${INPUT_CLS} resize-y min-h-[90px] leading-relaxed ${errors.message ? 'border-red-400 dark:border-red-500' : ''}`}
                 />
+                {errors.message && <span className="font-mono text-[10px] text-red-500">{errors.message}</span>}
               </Field>
 
               {status === 'error' && (

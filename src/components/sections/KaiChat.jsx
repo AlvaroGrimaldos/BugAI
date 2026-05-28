@@ -93,6 +93,7 @@ export default function KaiChat() {
           <div className="w-full h-[600px] rounded-2xl overflow-hidden border border-brand-violet/25 shadow-xl bg-white dark:bg-dark-card">
             <iframe
               src="https://www.chatbase.co/chatbot-iframe/sC-hkYsvOPJFVxUYie6u2"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
               style={{
                 width: '100%',
                 height: '100%',
