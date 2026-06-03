@@ -17,12 +17,33 @@
 
 import { useTheme }    from '../../context/ThemeContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { useEffect, useRef } from 'react'
 import { TECH_STACK }  from '../../constants/data'
 import Button from '../ui/Button'
 
 export default function Hero() {
   const { theme } = useTheme()
   const { t }     = useLanguage()
+  const gridRef = useRef(null)
+
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          grid.style.animationPlayState = 'running'
+        } else {
+          grid.style.animationPlayState = 'paused'
+        }
+      },
+      { threshold: 0 }
+    )
+
+    observer.observe(grid)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
@@ -42,9 +63,11 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* ── Capa 3: Grid animado ── */}
+      {/* ── Capa 3: Grid animado — pausa cuando sale del viewport ── */}
       <div
+        ref={gridRef}
         className="absolute inset-0 z-[2] bg-grid animate-grid-move"
+        style={{ animationPlayState: 'running' }}
         aria-hidden="true"
       />
 
