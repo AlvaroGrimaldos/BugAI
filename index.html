@@ -190,7 +190,7 @@
     <!-- React App -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- CHATBASE (KAI BOT) -->
+    <!-- CHATBASE (KAI BOT) — Deferred load until first user interaction -->
     <script>
       (function(){
         if(!window.chatbase||window.chatbase("getState")!=="initialized"){
@@ -214,10 +214,23 @@
           document.body.appendChild(script);
         };
 
-        if(document.readyState==="complete"){
+        const loadOnce=function(){
           onLoad();
+          window.removeEventListener('scroll',loadOnce,{capture:true});
+          window.removeEventListener('click',loadOnce,{capture:true});
+          window.removeEventListener('touchstart',loadOnce,{capture:true});
+        };
+
+        if(document.readyState==="complete"){
+          window.addEventListener('scroll',loadOnce,{capture:true});
+          window.addEventListener('click',loadOnce,{capture:true});
+          window.addEventListener('touchstart',loadOnce,{capture:true});
         }else{
-          window.addEventListener("load",onLoad);
+          window.addEventListener("load",()=>{
+            window.addEventListener('scroll',loadOnce,{capture:true});
+            window.addEventListener('click',loadOnce,{capture:true});
+            window.addEventListener('touchstart',loadOnce,{capture:true});
+          });
         }
       })();
     </script>
