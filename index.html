@@ -57,10 +57,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Preload de fuentes para evitar FOUT -->
+    <!-- Fuentes: preconnect + stylesheet directo (evita el @import render-blocking en CSS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+    <!-- DNS prefetch para servicios externos -->
     <link rel="dns-prefetch" href="https://api.anthropic.com" />
+    <link rel="dns-prefetch" href="https://www.chatbase.co" />
+    <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">

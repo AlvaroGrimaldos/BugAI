@@ -61,7 +61,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav aria-label={t('nav.aria_main')} className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-all duration-300 ${navBg}`}>
+      <nav aria-label={t('nav.aria_main')} className={`fixed top-0 left-0 right-0 z-50 h-16 px-6 flex items-center justify-between transition-[background-color,border-color,backdrop-filter] duration-300 ${navBg}`}>
 
         {/* Logo + wordmark */}
         <a href="#hero" className="flex items-center gap-2.5 gap-r-0 no-underline" aria-label={t('nav.aria_logo')}>
@@ -109,7 +109,7 @@ export default function Navbar() {
       <div
         className={`
           fixed inset-0 z-40 flex flex-col items-center justify-center gap-10
-          transition-all duration-300
+          transition-[opacity,visibility] duration-300
           ${open ? 'opacity-100 pointer-events-auto visible' : 'opacity-0 pointer-events-none invisible'}
           bg-white/25 dark:bg-zinc-900/25
           backdrop-blur-2xl
@@ -123,7 +123,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setOpen(false)}
               className="
-                font-head font-bold text-3xl no-underline transition-all duration-200
+                font-head font-bold text-3xl no-underline transition-colors duration-200
                 text-zinc-950 dark:text-zinc-100
                 hover:text-brand-violet-mid dark:hover:text-brand-violet-light
               "
