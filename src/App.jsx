@@ -1,19 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { ThemeProvider } from '../src/context/ThemeContext'
 import { LanguageProvider, useLanguage } from '../src/context/LanguageContext'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-import Navbar  from '../src/components/layout/Navbar'
-import Footer  from '../src/components/layout/Footer'
+import Navbar from '../src/components/layout/Navbar'
+import Footer from '../src/components/layout/Footer'
+import Hero   from '../src/components/sections/Hero'
+import Stats  from '../src/components/sections/Stats'
 
-import Hero        from '../src/components/sections/Hero'
-import Stats       from '../src/components/sections/Stats'
-import Services    from '../src/components/sections/Services'
-import HowItWorks  from '../src/components/sections/HowItWorks'
-import KaiChat     from '../src/components/sections/KaiChat'
-import Reviews     from '../src/components/sections/Reviews'
-import Contact     from '../src/components/sections/Contact'
+const Services   = lazy(() => import('../src/components/sections/Services'))
+const HowItWorks = lazy(() => import('../src/components/sections/HowItWorks'))
+const KaiChat    = lazy(() => import('../src/components/sections/KaiChat'))
+const Reviews    = lazy(() => import('../src/components/sections/Reviews'))
+const Contact    = lazy(() => import('../src/components/sections/Contact'))
 
 const SECTION_META_KEYS = [
   { id: 'hero',     titleKey: 'meta.hero.title',     descKey: 'meta.hero.desc' },
@@ -60,11 +60,13 @@ function AppContent() {
       <main>
         <Hero />
         <Stats />
-        <Services />
-        <HowItWorks />
-        <KaiChat />
-        <Reviews />
-        <Contact />
+        <Suspense fallback={null}>
+          <Services />
+          <HowItWorks />
+          <KaiChat />
+          <Reviews />
+          <Contact />
+        </Suspense>
       </main>
 
       <Footer />

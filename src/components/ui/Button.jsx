@@ -1,5 +1,5 @@
 export default function Button({ variant = 'primary', href, className = '', children, ...props }) {
-  const base = 'font-body font-semibold no-underline inline-flex items-center transition-all duration-200'
+  const base = 'font-body font-semibold no-underline inline-flex items-center transition-[color,background-color,box-shadow,transform,border-color] duration-200'
 
   const styles = {
     primary:
