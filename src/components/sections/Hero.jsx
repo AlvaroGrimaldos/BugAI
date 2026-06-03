@@ -61,7 +61,8 @@ export default function Hero() {
       />
 
       {/* ── Capa 5: Contenido ── */}
-      <div className="relative z-[3] max-w-4xl mx-auto text-center animate-fade-up">
+      {/* Sin animate-fade-up en el wrapper: el H1 (LCP) debe pintarse inmediatamente */}
+      <div className="relative z-[3] max-w-4xl mx-auto text-center">
 
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-brand-violet/20 border border-brand-violet-mid/40 rounded-full px-4 py-1.5 mb-8">
@@ -71,21 +72,21 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Headline principal */}
+        {/* Headline principal — visible de inmediato para LCP */}
         <h1 className="font-head font-extrabold text-[clamp(36px,7vw,76px)] leading-[1.05] tracking-tight mb-6 text-zinc-950 dark:text-zinc-100">
           {t('hero.title_1')}<br />
           <span className="text-gradient">{t('hero.title_2')}</span>
         </h1>
 
-        {/* Subtítulo */}
-        <p className="font-body text-[clamp(15px,2.5vw,19px)] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        {/* Subtítulo — fade-up solo en elementos secundarios (no afecta LCP) */}
+        <p className="font-body text-[clamp(15px,2.5vw,19px)] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up">
           {t('hero.subtitle_before')}{' '}
           <strong className="text-zinc-950 dark:text-zinc-100 font-semibold">{t('hero.subtitle_strong')}</strong>{' '}
           {t('hero.subtitle_after')}
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5">
+        <div className="flex flex-wrap items-center justify-center gap-3.5 animate-fade-up">
           <Button href="#contact" variant="hero" className="text-base px-7 py-3.5 gap-2">
             {t('hero.cta_primary')}
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -97,7 +98,7 @@ export default function Hero() {
         </div>
 
         {/* Tech stack pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-14">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-14 animate-fade-up">
           <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 tracking-widest">
             {t('hero.powered_by')}
           </span>
